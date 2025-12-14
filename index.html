@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Village | Research. Strategy. Execution.</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text x='50' y='50' font-size='48' font-weight='900' font-family='Arial' fill='%23fff' text-anchor='middle' dominant-baseline='central'>NV</text></svg>">
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: #000000; /* PURE BLACK */
+            font-size: 16px; /* Base size optimized for Sora */
+            line-height: 1.6; /* Improved line height */
+            font-weight: 400; /* Regular weight - Sora is naturally bold */
+        }
+
+        /* Enhanced readability for key elements */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700; /* Bolder headings */
+            letter-spacing: -0.01em; /* Slightly tighter tracking */
+        }
+
+        p, li, span {
+            font-weight: 400; /* Regular weight for Sora */
+        }
+
+        /* Navigation enhancement */
+        nav a, nav button {
+            font-weight: 600;
+        }
+
+        /* Card titles more prominent */
+        .service-card h3, .service-card h4 {
+            font-weight: 700;
+        }
+
+        /* Button text enhancement */
+        button, .btn, a[class*="px-"] {
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .dice-menu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .dice-dot {
+            width: 6px;
+            height: 6px;
+            background-color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .dice-menu:hover .dice-dot {
+            background-color: #888;
+            transform: scale(1.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 73px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            border-bottom: 1px solid #333;
+            z-index: 40;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .dice-menu {
+                display: none;
+            }
+        }
+
+        .hero {
+            position: relative;
+            z-index: 2;
+            background: #000000; /* PURE BLACK */
+        }
+
+        .section-with-stars {
+            position: relative;
+            z-index: 2;
+            background: #000000 !important; /* PURE BLACK */
+        }
+
+        /* INTERACTIVE EFFECTS SECTION */
+        .effects-section {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: #000000; /* PURE BLACK */
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #effectsCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        footer {
+            position: relative;
+            z-index: 3;
+            background: #000000 !important;
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .service-details.expanded {
+            max-height: 2000px;
+        }
+
+        .learn-more-btn {
+            transition: transform 0.3s ease;
+        }
+
+        .learn-more-btn.rotated {
+            transform: rotate(180deg);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .calculator-container {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 900px;
+        }
+
+        /* Lead Type Selector Styles */
+        .radio-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .radio-inner {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .lead-type-card:hover .lead-type-content {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .lead-type-content {
+            transition: all 0.3s ease;
+        }
+
+        /* Subscription Tab Styles */
+        .sub-tab-active {
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+        }
+
+        .sub-tab-inactive {
+            background: transparent;
+            color: #9ca3af;
+            border: 2px solid #374151;
+        }
+
+        .sub-tab-inactive:hover {
+            border-color: #6b7280;
+            color: #d1d5db;
+        }
+
+        .slider-container {
+            margin: 2rem 0;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #333;
+            outline: none;
+            opacity: 0.9;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            border: none;
+        }
+
+        .price-card {
+            background: rgba(10, 10, 10, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .price-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .client-logo {
+            transition: all 0.3s ease;
+            filter: grayscale(100%) brightness(70%);
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0%) brightness(100%);
+            transform: scale(1.05);
+        }
+
+        /* Subscription Month Selector */
+        .month-selector {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .month-btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+        }
+
+        .month-btn.active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        .month-btn:hover:not(.active) {
+            border-color: #6b7280;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="antialiased bg-[#000000] text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-black/95 backdrop-blur-md border-b border-gray-800 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="assets/new village logo desin.png" alt="New Village Logo" class="h-8 w-8 object-contain">
+                <div class="text-2xl font-black tracking-tight text-white">New Village</div>
+            </a>
+
+            <ul class="hidden md:flex gap-8 items-center">
+                <li><a href="#what-you-get" class="text-gray-300 hover:text-white transition font-medium">About Us</a></li>
+                <li><a href="#pricing" class="text-gray-300 hover:text-white transition font-medium">Pricing</a></li>
+                <li><a href="faq.html" class="text-gray-300 hover:text-white transition font-medium">FAQ</a></li>
+                <li><a href="#contact" class="text-gray-300 hover:text-white transition font-medium">Contact</a></li>
+                <li><a href="blog.html" class="text-gray-300 hover:text-white transition font-medium">Resources</a></li>
+            </ul>
+
+            <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="hidden md:block bg-white text-black px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition">
+                Book a Meeting
+            </button>
+
+            <div class="md:hidden dice-menu" onclick="toggleMenu()">
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu">
+            <ul class="flex flex-col p-6 gap-4">
+                <li><a href="#what-you-get" class="text-gray-300 hover:text-white transition font-medium block">About Us</a></li>
+                <li><a href="#pricing" class="text-gray-300 hover:text-white transition font-medium block">Pricing</a></li>
+                <li><a href="faq.html" class="text-gray-300 hover:text-white transition font-medium block">FAQ</a></li>
+                <li><a href="#contact" class="text-gray-300 hover:text-white transition font-medium block">Contact</a></li>
+                <li><a href="blog.html" class="text-gray-300 hover:text-white transition font-medium block">Resources</a></li>
+                <li><button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="bg-white text-black px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition text-center block w-full">Book a Meeting</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <!-- Hero Section with Video -->
+        <section class="relative pt-32 pb-20 px-6 min-h-screen flex items-center overflow-hidden">
+            <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover opacity-80">
+                <source src="assets/video.mp4" type="video/mp4">
+            </video>
+
+            <div class="absolute top-0 left-0 w-full h-full bg-black/60"></div>
+
+            <div class="max-w-5xl mx-auto text-center relative z-10">
+                <div class="inline-block bg-white text-black px-4 py-1.5 rounded-full text-sm font-semibold uppercase tracking-wider mb-6">
+                    Research. Strategy. Execution.
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-tight mb-3 text-white">
+                    Custom Verified Lead Databases
+                </h1>
+
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8 text-white">
+                    Any Industry. Any Size.
+                </h1>
+
+                <h2 class="text-xl md:text-2xl text-white mb-8 leading-relaxed max-w-4xl mx-auto font-semibold">
+                    Verified+Enriched Contacts + AI Pain Points + Quality Scoring
+                </h2>
+
+                <p class="text-xl md:text-2xl text-white mb-8 leading-relaxed max-w-4xl mx-auto font-semibold">
+                    Custom databases built to YOUR ideal customer profile. We manually research leads that match. No scraping. No old databases. Custom, targeted research for your order only.
+                </p>
+
+                <div class="flex justify-center">
+                    <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="bg-white text-black px-16 py-5 rounded-xl font-bold text-xl hover:bg-gray-200 hover:scale-105 transition-all shadow-2xl">
+                        Book a Meeting
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You Get Section - REDESIGNED SEXY VERSION (NO EMOJIS) -->
+<section id="what-you-get" class="section-with-stars py-32 px-6 border-t border-white/5 relative overflow-hidden">
+    <!-- Ambient Glow Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent pointer-events-none"></div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-24">
+            <h2 class="text-5xl md:text-6xl font-black tracking-tight mb-6 text-white">
+                Why New Village is Built Different
+            </h2>
+        </div>
+
+        <div class="grid gap-8">
+            <!-- Card 1: What sort of leads do you need? -->
+            <div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
+                <div class="p-10 cursor-pointer" onclick="toggleCard('details4')">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                                What sort of leads do you need?
+                            </h3>
+                            <p class="text-xl text-white/60 font-medium">
+                                B2B? B2C? We got you!
+                            </p>
+                        </div>
+                        <button id="btndetails4" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="details4" class="service-details">
+                    <div class="px-10 pb-10 space-y-6">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-2xl font-bold text-white mb-4">We Build Databases for Any Market</h4>
+                            <p class="text-white/70 text-lg leading-relaxed">
+                                Whether you're targeting businesses or consumers, we customize our research to match your exact audience. No market is too niche, no Ideal Customer Profile too specific.
+                            </p>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-2xl font-bold text-white mb-6">B2B Lead Examples</h4>
+                            <ul class="space-y-3 text-white/70 text-lg">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>SaaS decision makers (CTO, VP Engineering, Product Managers)</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>E-commerce founders and CMOs</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>Agency owners and creative directors</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>Franchise owners and regional managers</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>Professional services firms (legal, consulting, accounting)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-2xl font-bold text-white mb-6">B2C Lead Examples</h4>
+                            <ul class="space-y-3 text-white/70 text-lg">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>Homeowners in specific ZIP codes or property values</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>Parents of children in certain age groups</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>High-net-worth individuals interested in specific hobbies</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>Recent graduates or career changers</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-white text-xl mt-1">•</span>
+                                    <span>Event attendees or community group members</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-2xl font-bold text-white mb-4">Your Custom Requirements</h4>
+                            <p class="text-white/70 text-lg leading-relaxed">
+                                <strong class="text-white font-black">Have a unique audience?</strong> We research and verify leads based on ANY criteria you define—industry, location, company size, tech stack, recent funding, hiring patterns, or custom behavioral signals. Just tell us who you're looking for.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- Card: Targeted Instagram Profile Lists (FINAL VERSION) -->
+<div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
+    <div class="p-10 cursor-pointer" onclick="toggleCard('details5')">
+        <div class="flex justify-between items-start">
+            <div class="flex-1">
+                <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                    Selling on Instagram? We Find Your Perfect Customer
+                </h3>
+                <p class="text-xl text-white/60 font-medium">
+                    Targeted Instagram profile lists based on real engagement behavior.
+                </p>
+            </div>
+            <button id="btndetails5" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="details5" class="service-details">
+        <div class="px-10 pb-10 space-y-6">
+            <!-- WHY MOST INSTAGRAM LEAD GENERATION FAILS -->
+            <div class="bg-white/[0.05] backdrop-blur-sm p-8 rounded-2xl border-2 border-white/20">
+                <h4 class="text-2xl font-bold text-white mb-4">Why Most Instagram Lead Generation Fails</h4>
+                <p class="text-white/70 text-lg leading-relaxed mb-6">
+                    Most people try one of three approaches—and they all fail:
+                </p>
+                <ul class="space-y-4 text-white/70 text-lg mb-6">
+                    <li class="flex items-start gap-3">
+                        <span class="text-white/50 text-2xl mt-0">✗</span>
+                        <div>
+                            <p class="text-white font-bold mb-1">Do it manually</p>
+                            <p>Scroll through thousands of profiles for weeks. No system for finding actual buyers. Wasted time, random results.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-white/50 text-2xl mt-0">✗</span>
+                        <div>
+                            <p class="text-white font-bold mb-1">Use shady automation tools</p>
+                            <p>Phantombuster, IGScraper, Jarvee—your account gets flagged and banned. Instagram isn't dumb. They detect fraud.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-white/50 text-2xl mt-0">✗</span>
+                        <div>
+                            <p class="text-white font-bold mb-1">Hire cheap VAs on Fiverr/Upwork</p>
+                            <p>Generalists with no methodology. Inconsistent quality. You waste time training them and money on bad results.</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="text-white font-bold text-xl">
+                    We have a proven system for finding engaged buyers. Professional research with quality standards—not random scraping.
+                </p>
+            </div>
+
+            <!-- WHAT IT IS -->
+            <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                <h4 class="text-2xl font-bold text-white mb-4">What Are Targeted Instagram Profile Lists?</h4>
+                <p class="text-white/70 text-lg leading-relaxed mb-4">
+                    We compile lists of Instagram profiles based on who they follow, what content they like, and which posts they comment on.
+                </p>
+                <div class="space-y-3 text-white/70 text-lg">
+                    <p><strong class="text-white font-black">Selling protein powder?</strong> We find people who comment on gym memes and engage with supplement brands.</p>
+                    <p><strong class="text-white font-black">Launching a fashion brand?</strong> We find people who engage with streetwear accounts and fashion influencers.</p>
+                    <p><strong class="text-white font-black">Offering trading signals?</strong> We find people who engage with crypto traders and financial content.</p>
+                </div>
+            </div>
+
+            <!-- HOW IT WORKS -->
+            <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                <h4 class="text-2xl font-bold text-white mb-6">How It Works</h4>
+                <div class="space-y-4">
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-white text-black rounded-xl w-12 h-12 flex items-center justify-center font-black text-xl flex-shrink-0">1</div>
+                        <div>
+                            <h5 class="text-xl font-bold text-white mb-2">You tell us what your customers engage with</h5>
+                            <p class="text-white/70">Gym memes? Fashion posts? Crypto content? We need to know what your ideal customer is actively liking and commenting on.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-white text-black rounded-xl w-12 h-12 flex items-center justify-center font-black text-xl flex-shrink-0">2</div>
+                        <div>
+                            <h5 class="text-xl font-bold text-white mb-2">We identify the accounts they follow</h5>
+                            <p class="text-white/70">Find the meme pages, influencers, brands, and creators your target audience engages with most</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-white text-black rounded-xl w-12 h-12 flex items-center justify-center font-black text-xl flex-shrink-0">3</div>
+                        <div>
+                            <h5 class="text-xl font-bold text-white mb-2">We compile their engaged followers</h5>
+                            <p class="text-white/70">Extract usernames of people who actively comment, like, and interact—not passive scrollers</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-white text-black rounded-xl w-12 h-12 flex items-center justify-center font-black text-xl flex-shrink-0">4</div>
+                        <div>
+                            <h5 class="text-xl font-bold text-white mb-2">You get a ready-to-use profile list</h5>
+                            <p class="text-white/70">Organized spreadsheet with Instagram handles and profile links—ready for DM outreach or ad targeting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- USE CASES -->
+            <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                <h4 class="text-2xl font-bold text-white mb-6">Who Uses This?</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-white/70 text-lg">
+                    <div>
+                        <p class="text-white font-bold mb-2">Fitness/Supplement Brands</p>
+                        <p>Target people who engage with gym content and fitness influencers</p>
+                    </div>
+                    <div>
+                        <p class="text-white font-bold mb-2">Fashion/Streetwear</p>
+                        <p>Target people who engage with fashion accounts and style influencers</p>
+                    </div>
+                    <div>
+                        <p class="text-white font-bold mb-2">OnlyFans/Creators</p>
+                        <p>Target followers of similar creators who pay for content</p>
+                    </div>
+                    <div>
+                        <p class="text-white font-bold mb-2">Crypto/Trading</p>
+                        <p>Target people who engage with traders and analysis accounts</p>
+                    </div>
+                    <div>
+                        <p class="text-white font-bold mb-2">Gaming/Esports</p>
+                        <p>Target people who engage with gaming content and streamers</p>
+                    </div>
+                    <div>
+                        <p class="text-white font-bold mb-2">Info Products/Courses</p>
+                        <p>Target people who engage with coaches and educational content</p>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            
+            
+        </div>
+    </div>
+</div>
+
+            <!-- Card 2: Every Lead Includes -->
+            <div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
+                <div class="p-10 cursor-pointer" onclick="toggleCard('details1')">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                                Every Lead Includes
+                            </h3>
+                            <p class="text-xl text-white/60 font-medium">
+                                Six critical data points that make your outreach smarter, more relevant, and more effective.
+                            </p>
+                        </div>
+                        <button id="btndetails1" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="details1" class="service-details">
+                    <div class="px-10 pb-10 grid md:grid-cols-2 gap-6">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-3">Verified Decision Maker Contact</h4>
+                            <p class="text-white/70">Name, title, email, LinkedIn, phone (when publicly available)</p>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-3">AI-Generated Pain Points</h4>
+                            <p class="text-white/70">Researched insights specific to each lead—so your outreach is personalized and relevant</p>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-3">Lead Quality Score</h4>
+                            <p class="text-white/70">Rated and prioritized for your review—focus on the best prospects first</p>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-3">Company Intelligence</h4>
+                            <p class="text-white/70">Segment, category, key attributes customized to your Ideal Customer Profile</p>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-3">Transparent Sourcing</h4>
+                            <p class="text-white/70">See exactly where we found each data point—full documentation included</p>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-3">CRM-Ready Format</h4>
+                            <p class="text-white/70">Excel (.xlsx) or Google Sheets—import anywhere, use immediately</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: How It Works -->
+            <div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
+                <div class="p-10 cursor-pointer" onclick="toggleCard('details2')">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                                How It Works
+                            </h3>
+                            <p class="text-xl text-white/60 font-medium">
+                                Five steps from your ideal customer profile to a complete, verified database.
+                            </p>
+                        </div>
+                        <button id="btndetails2" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="details2" class="service-details">
+                    <div class="px-10 pb-10 space-y-6">
+                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">1</div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-white mb-3">You define your ideal customer profile</h4>
+                                <p class="text-white/70 text-lg">Industry, company size, location, decision maker role—whatever matters for your business</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">2</div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-white mb-3">We manually research companies that match</h4>
+                                <p class="text-white/70 text-lg">No scraping. No old databases. Custom, targeted research for your order only.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">3</div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-white mb-3">AI enriches each lead with pain point analysis</h4>
+                                <p class="text-white/70 text-lg">Our AI analyzes company websites, news, and industry context to identify likely challenges</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">4</div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-white mb-3">We verify all contact information</h4>
+                                <p class="text-white/70 text-lg">Multi-step verification process - 85%+ deliverability guarantee</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">5</div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-white mb-3">You receive a complete, sourced database</h4>
+                                <p class="text-white/70 text-lg"><strong class="text-white font-black">Typical delivery: 3-5 business days</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: What is a Smart Lead? -->
+            <div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
+                <div class="p-10 cursor-pointer" onclick="toggleCard('details3')">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                                What is a Smart Lead?
+                            </h3>
+                            <p class="text-xl text-white/60 font-medium">
+                                The difference between a contact and a conversation-ready prospect.
+                            </p>
+                        </div>
+                        <button id="btndetails3" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="details3" class="service-details">
+                    <div class="px-10 pb-10 space-y-6">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-2xl font-bold text-white mb-6">Regular Lead vs. Smart Lead</h4>
+                            <div class="space-y-6">
+                                <div class="bg-white/[0.02] p-6 rounded-xl border border-white/5">
+                                    <p class="text-white/50 mb-2 font-bold text-sm uppercase tracking-wider">Regular Lead:</p>
+                                    <p class="text-white/70 text-lg">"john@company.com - VP Sales"</p>
+                                </div>
+                                <div class="bg-white/[0.05] p-6 rounded-xl border border-white/20">
+                                    <p class="text-white mb-2 font-bold text-sm uppercase tracking-wider">Smart Lead:</p>
+                                    <p class="text-white/90 text-lg leading-relaxed">"John Smith, VP Sales at TechCorp (50-200 employees, B2B SaaS) - Likely pain points: scaling outbound without burning budget, need verified data for cold email compliance. Quality Score: 87/100"</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-2xl font-bold text-white mb-6">Why Smart Leads Work Better</h4>
+                            <p class="text-white/70 text-lg mb-6">Instead of sending generic "Hey, wanna chat?" messages to 1,000 people, you can:</p>
+                            <ul class="space-y-4 text-white/70 text-lg">
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Reference their specific challenges in your first email</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Prioritize leads by quality score (focus on 80+ scores first)</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Segment by pain point type (customize your pitch)</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Sound like you actually researched them (because we did)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-2xl font-bold text-white mb-6">The Difference</h4>
+                            <div class="space-y-4 text-lg leading-relaxed">
+                                <p class="text-white/70">
+                                    <strong class="text-white font-black">With regular leads:</strong> Generic outreach to contacts who may or may not be relevant.
+                                </p>
+                                <p class="text-white/70">
+                                    <strong class="text-white font-black">With Smart Leads:</strong> Personalized outreach to pre-qualified prospects with context-aware messaging.
+                                </p>
+                                <p class="text-white font-bold text-xl mt-6">
+                                    More relevant conversations. Better use of your time.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guarantee Cards Grid -->
+            <div class="mt-20">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
+                        <h3 class="text-2xl font-black mb-4 text-white">Custom, Targeted Data</h3>
+                        <p class="text-white/70 text-lg leading-relaxed">
+                            Not recycled databases. New research for every order. Built specifically to YOUR ideal customer profile.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
+                        <h3 class="text-2xl font-black mb-4 text-white">100% Matches Your Ideal Customer Profile</h3>
+                        <p class="text-white/70 text-lg leading-relaxed">
+                            If the leads don't match your ideal customer profile, full refund. No questions asked.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
+                        <h3 class="text-2xl font-black mb-4 text-white">Built From Scratch</h3>
+                        <p class="text-white/70 text-lg leading-relaxed">
+                            Every database is newly built. Never recycled. Never resold. Custom research for your order only.
+                        </p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
+                        <h3 class="text-2xl font-black mb-4 text-white">Direct Access</h3>
+                        <p class="text-white/70 text-lg leading-relaxed">
+                            Work directly with the founder. No support tickets. No chatbots. Real communication with the person building your database.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Footer Text -->
+                <p class="text-center text-3xl font-black text-white mt-16">
+                    Zero risk. Fully guaranteed.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Pricing Section - REDESIGNED -->
+<section id="pricing" class="section-with-stars py-32 px-6 border-t border-white/5 relative overflow-hidden">
+    <!-- Ambient Glow Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent pointer-events-none"></div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+            <h2 class="text-5xl md:text-6xl font-black tracking-tight mb-6 text-white">
+                Simple, Transparent Pricing
+            </h2>
+            <p class="text-xl md:text-2xl text-white/60 max-w-2xl mx-auto">
+                Pay per lead. Optional subscriptions. No hidden fees.
+            </p>
+        </div>
+
+        <!-- Lead Type Selector -->
+        <div class="mb-20">
+            <h3 class="text-3xl font-bold mb-10 text-white text-center">Choose Your Lead Type</h3>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Smart Leads Card -->
+                <label class="lead-type-card cursor-pointer group" onclick="selectLeadType('smart')">
+                    <input type="radio" name="leadType" value="smart" id="smartLeads" checked class="hidden">
+                    <div id="smartCard" 
+                         class="relative bg-white/[0.03] backdrop-blur-xl border-2 border-white rounded-2xl p-8 hover:bg-white/[0.05] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)]">
+                        
+                        <!-- Radio Circle -->
+                        <div class="flex items-start gap-5 mb-6">
+                            <div class="radio-circle mt-1">
+                                <div class="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+                                    <div class="radio-inner w-3 h-3 rounded-full" id="smartRadio" style="background: #fff;"></div>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-3xl font-black text-white mb-2">Smart Leads</h4>
+                                <p class="text-white/60 font-medium">Verified + AI Enriched</p>
+                            </div>
+                        </div>
+
+                        <!-- Features List -->
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Segment + Category</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Decision Maker + Title</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">AI Pain Point Analysis</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Lead Score (1-100)</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Email + Social + Phone</span>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Section -->
+                        <div class="border-t border-white/10 pt-6">
+                            <p class="text-xs uppercase tracking-wider text-white/40 mb-3 font-bold">Perfect for:</p>
+                            <p class="text-white/70 mb-4">B2B sales, personalized outreach, high-ticket deals</p>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-white/50 text-sm">Starting at</span>
+                                <span class="text-3xl font-black text-white">€3</span>
+                                <span class="text-white/50">/lead</span>
+                            </div>
+                            <p class="text-xs text-white/40 mt-2">(Minimum €1,500 order)</p>
+                        </div>
+
+                        <!-- Hover Glow Effect -->
+                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </label>
+
+                <!-- Volume Leads Card -->
+                <label class="lead-type-card cursor-pointer group" onclick="selectLeadType('volume')">
+                    <input type="radio" name="leadType" value="volume" id="volumeLeads" class="hidden">
+                    <div id="volumeCard" 
+                         class="relative bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-2xl p-8 hover:bg-white/[0.05] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)]">
+                        
+                        <!-- Radio Circle -->
+                        <div class="flex items-start gap-5 mb-6">
+                            <div class="radio-circle mt-1">
+                                <div class="w-6 h-6 rounded-full border-2 border-white/30 flex items-center justify-center">
+                                    <div class="radio-inner w-3 h-3 rounded-full" id="volumeRadio"></div>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-3xl font-black text-white mb-2">Volume Leads</h4>
+                                <p class="text-white/60 font-medium">Basic Contact Info Only</p>
+                            </div>
+                        </div>
+
+                        <!-- Features List -->
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Company Name</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Contact Name + Email</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Social Media (if available)</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/30">
+                                <span class="text-white/30 text-xl">✗</span>
+                                <span class="font-medium line-through">Pain Points (Smart Leads only)</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/30">
+                                <span class="text-white/30 text-xl">✗</span>
+                                <span class="font-medium line-through">Lead Score (Smart Leads only)</span>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Section -->
+                        <div class="border-t border-white/10 pt-6">
+                            <p class="text-xs uppercase tracking-wider text-white/40 mb-3 font-bold">Perfect for:</p>
+                            <p class="text-white/70 mb-4">Newsletters, cold email campaigns, lead magnets</p>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-white/50 text-sm">Starting at</span>
+                                <span class="text-3xl font-black text-white">€0.40</span>
+                                <span class="text-white/50">/lead</span>
+                            </div>
+                            <p class="text-xs text-white/40 mt-2">(Minimum €1,500 order)</p>
+                        </div>
+
+                        <!-- Hover Glow Effect -->
+                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </label>
+
+                <!-- Instagram Profile Lists Card -->
+                <label class="lead-type-card cursor-pointer group" onclick="selectLeadType('instagram')">
+                    <input type="radio" name="leadType" value="instagram" id="instagramLeads" class="hidden">
+                    <div id="instagramCard"
+                         class="relative bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-2xl p-8 hover:bg-white/[0.05] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)]">
+
+                        <!-- Radio Circle -->
+                        <div class="flex items-start gap-5 mb-6">
+                            <div class="radio-circle mt-1">
+                                <div class="w-6 h-6 rounded-full border-2 border-white/30 flex items-center justify-center">
+                                    <div class="radio-inner w-3 h-3 rounded-full" id="instagramRadio"></div>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-3xl font-black text-white mb-2">Instagram Profiles</h4>
+                                <p class="text-white/60 font-medium">Targeted by Engagement</p>
+                            </div>
+                        </div>
+
+                        <!-- Features List -->
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Instagram Username + URL</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Potential Future Buyer</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Source Account (Customer)</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Quality Filtered (Active, Real)</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-white/80">
+                                <span class="text-white text-xl">✓</span>
+                                <span class="font-medium">Delivered in Spreadsheet</span>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Section -->
+                        <div class="border-t border-white/10 pt-6">
+                            <p class="text-xs uppercase tracking-wider text-white/40 mb-3 font-bold">Perfect for:</p>
+                            <p class="text-white/70 mb-4">DM campaigns, brand awareness, influencer targeting</p>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-white/50 text-sm">Fixed price</span>
+                                <span class="text-3xl font-black text-white">€1.50</span>
+                                <span class="text-white/50">/profile</span>
+                            </div>
+                            <p class="text-xs text-white/40 mt-2">(Minimum €1,500 order)</p>
+                        </div>
+
+                        <!-- Hover Glow Effect -->
+                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Calculator Container -->
+        <div class="calculator-container max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-black mb-4 text-white">One-Time Order Calculator</h3>
+                <p class="text-xl text-white/60" id="calculatorSubtext">How many leads do you need?</p>
+            </div>
+
+            <!-- Purchase Type Selector -->
+            <div class="month-selector mb-12 flex flex-wrap justify-center gap-3">
+                <button id="oneTimeBtn" 
+                        class="month-btn px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white text-black hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]" 
+                        onclick="selectPurchaseType('onetime')">
+                    One-Time Purchase
+                </button>
+                <button id="month1Btn" 
+                        class="month-btn px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/40" 
+                        onclick="selectPurchaseType('month1')">
+                    Month 1
+                </button>
+                <button id="month2Btn" 
+                        class="month-btn px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/40" 
+                        onclick="selectPurchaseType('month2')">
+                    Month 2
+                </button>
+                <button id="month3Btn" 
+                        class="month-btn px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/40" 
+                        onclick="selectPurchaseType('month3')">
+                    Month 3+
+                </button>
+            </div>
+
+            <!-- Slider -->
+            <div class="slider-container mb-12">
+                <input type="range"
+                       min="500"
+                       max="10000"
+                       value="500" 
+                       step="100" 
+                       class="slider w-full h-2 bg-white/10 rounded-full appearance-none cursor-pointer
+                              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 
+                              [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer
+                              [&::-webkit-slider-thumb]:shadow-[0_0_20px_rgba(255,255,255,0.5)] [&::-webkit-slider-thumb]:hover:scale-110
+                              [&::-webkit-slider-thumb]:transition-transform
+                              [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full 
+                              [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer
+                              [&::-moz-range-thumb]:shadow-[0_0_20px_rgba(255,255,255,0.5)] [&::-moz-range-thumb]:hover:scale-110"
+                       id="leadSlider" 
+                       oninput="updatePricing()">
+                <div class="flex justify-between text-sm text-white/40 mt-4 font-medium" id="sliderLabels">
+                    <span>500</span>
+                    <span>5,000</span>
+                    <span>10,000+</span>
+                </div>
+            </div>
+
+            <!-- Lead Count Display -->
+            <div class="text-center mb-12">
+                <div class="text-7xl md:text-8xl font-black text-white mb-3 tracking-tight">
+                    <span id="leadCount">500</span>
+                </div>
+                <div class="text-white/60 text-2xl font-semibold" id="leadTypeLabel">Smart Leads</div>
+            </div>
+
+            <!-- Price Breakdown Card -->
+            <div class="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-10 mb-10 shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
+                <div class="flex justify-between items-center mb-6 pb-6 border-b border-white/10">
+                    <div class="text-white/60 text-lg font-medium">Subtotal:</div>
+                    <div class="text-3xl font-black text-white">€<span id="subtotalPrice">1,500</span></div>
+                </div>
+
+                <div id="discountRow" class="flex justify-between items-center mb-6 pb-6 border-b border-white/10" style="display: none;">
+                    <div class="text-green-400 font-bold text-lg"><span id="discountLabel">8% Discount:</span></div>
+                    <div class="text-green-400 font-black text-2xl">-€<span id="discountAmount">0</span></div>
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <div class="text-white/70 text-xl font-bold">TOTAL PRICE:</div>
+                    <div class="text-6xl font-black text-white tracking-tight">
+                        €<span id="totalPrice">1,500</span>
+                    </div>
+                </div>
+                <div class="text-right mt-3">
+                    <div class="text-white/50 text-sm">
+                        Price per lead:
+                        <span class="text-white font-bold text-lg ml-1">€<span id="pricePerLead">3.00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div id="smartFeatures" class="grid md:grid-cols-3 gap-6 text-left mb-10">
+                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-xl">✓</span>
+                    <span class="text-white/70 font-medium">Verified contacts + AI pain points</span>
+                </div>
+                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-xl">✓</span>
+                    <span class="text-white/70 font-medium">Lead quality scoring</span>
+                </div>
+                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-xl">✓</span>
+                    <span class="text-white/70 font-medium">Delivered in 3-5 business days</span>
+                </div>
+            </div>
+
+            <div id="volumeFeatures" class="grid md:grid-cols-3 gap-6 text-left mb-10" style="display: none;">
+                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-xl">✓</span>
+                    <span class="text-white/70 font-medium">Verified email addresses</span>
+                </div>
+                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-xl">✓</span>
+                    <span class="text-white/70 font-medium">Names + basic company info</span>
+                </div>
+                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-xl">✓</span>
+                    <span class="text-white/70 font-medium">Delivered in 5-7 business days</span>
+                </div>
+            </div>
+
+            <div id="instagramFeatures" class="grid md:grid-cols-3 gap-6 text-left mb-10" style="display: none;">
+                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-xl">✓</span>
+                    <span class="text-white/70 font-medium">Targeted by engagement behavior</span>
+                </div>
+                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-xl">✓</span>
+                    <span class="text-white/70 font-medium">Quality filtered (active, real profiles)</span>
+                </div>
+                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-xl">✓</span>
+                    <span class="text-white/70 font-medium">Delivered in 5-7 business days</span>
+                </div>
+            </div>
+
+            <!-- Warning Messages -->
+            <div id="subscriptionNote" 
+                 class="bg-purple-500/10 border-2 border-purple-500/30 rounded-2xl p-6 mb-8 text-purple-300 font-semibold text-center" 
+                 style="display: none;">
+                <span id="subscriptionNoteText"></span>
+            </div>
+
+            <!-- CTA Button -->
+            <a href="#contact" 
+               class="block w-full bg-white text-black px-10 py-5 rounded-2xl font-black text-xl text-center
+                      hover:bg-white/90 hover:scale-[1.02] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)]
+                      transition-all duration-300 tracking-tight">
+                Get Started
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Custom slider track styling for better appearance */
+.slider::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #fff 0%, #fff var(--value), rgba(255,255,255,0.1) var(--value), rgba(255,255,255,0.1) 100%);
+    border-radius: 9999px;
+}
+
+.slider::-moz-range-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 9999px;
+}
+
+.slider::-moz-range-progress {
+    background: #fff;
+    border-radius: 9999px;
+}
+</style>
+
+        <!-- Contact -->
+        <section id="contact" class="section-with-stars py-20 px-6 border-t border-gray-800">
+            <div class="max-w-3xl mx-auto text-center relative z-10">
+                <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-6 text-white">Get Your Custom Quote</h2>
+                <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+                    Tell us your ideal customer profile. We'll respond with feasibility, timeline, and exact pricing within 24 hours.
+                </p>
+                <p class="text-lg text-gray-500 mb-10 italic">
+                    Free consultation. No pressure. Just results.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                    <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="bg-white text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-200 transition">
+                        Book a Meeting
+                    </button>
+
+                    <a href="mailto:niko.newvillage@proton.me" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-black transition flex flex-col items-center gap-1">
+                        <span class="text-sm font-normal">Email Us:</span>
+                        <span>niko.newvillage@proton.me</span>
+                    </a>
+                </div>
+
+                <div class="mt-12 pt-12 border-t border-gray-800">
+                    <p class="text-gray-400 leading-relaxed mb-4">
+                        <strong class="text-white text-2xl">New Village</strong><br>
+                        <span class="text-lg">Custom Verified Lead Databases</span>
+                    </p>
+                    <p class="text-gray-500 text-sm uppercase tracking-wider mb-2">Direct Email:</p>
+                    <a href="mailto:niko.newvillage@proton.me" class="inline-block text-white hover:text-gray-300 transition text-2xl font-bold">
+                        niko.newvillage@proton.me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+<!-- MODERN FOOTER - PURE BLACK -->
+<footer class="py-16 px-6 border-t border-gray-800" style="background-color: #000;">
+    <div class="max-w-6xl mx-auto">
+        
+        <!-- Top Section -->
+        <div class="grid md:grid-cols-3 gap-12 mb-12">
+            
+            <!-- Logo & Tagline -->
+            <div class="md:col-span-1">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="assets/new village logo desin.png" alt="New Village Logo" class="h-12 w-12 object-contain">
+                    <div class="text-3xl font-black tracking-tight text-white">New Village</div>
+                </div>
+                <p class="text-gray-400 text-lg mb-4">Research. Strategy. Execution.</p>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    Custom lead databases built to your exact Ideal Customer Profile. Verified contacts, AI-enriched data, and guaranteed deliverability.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#what-you-get" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                    <li><a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+                    <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Resources</a></li>
+                    <li><a href="policies.html" class="text-gray-400 hover:text-white transition">Policies</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Get in Touch</h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="mailto:niko.newvillage@proton.me" class="text-gray-400 hover:text-white transition block">
+                            <div class="text-xs text-gray-500 mb-1">Email</div>
+                            <div class="font-semibold">niko.newvillage@proton.me</div>
+                        </a>
+                    </li>
+                    <li>
+                        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="text-left w-full">
+                            <div class="text-xs text-gray-500 mb-1">Schedule</div>
+                            <div class="font-semibold text-gray-400 hover:text-white transition">Book a Meeting →</div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-500 text-sm">
+                &copy; 2025 New Village. All rights reserved.
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+
+
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const button = document.querySelector('.dice-menu');
+
+            if (menu.classList.contains('active') &&
+                !menu.contains(event.target) &&
+                !button.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        function toggleCard(cardId) {
+            const card = document.getElementById(cardId);
+            const btn = document.getElementById('btn' + cardId);
+
+            card.classList.toggle('expanded');
+            btn.classList.toggle('rotated');
+        }
+
+        // LEAD TYPE SELECTION
+        let currentLeadType = 'smart'; // Default to smart leads
+        let currentPurchaseType = 'onetime'; // Default to one-time purchase
+
+        function selectLeadType(type) {
+            currentLeadType = type;
+
+            // Update radio button visual states
+            const smartCard = document.getElementById('smartCard');
+            const volumeCard = document.getElementById('volumeCard');
+            const instagramCard = document.getElementById('instagramCard');
+            const smartRadio = document.getElementById('smartRadio');
+            const volumeRadio = document.getElementById('volumeRadio');
+            const instagramRadio = document.getElementById('instagramRadio');
+
+            // Reset all cards to default state
+            smartCard.classList.remove('border-white');
+            smartCard.classList.add('border-white/20');
+            volumeCard.classList.remove('border-white');
+            volumeCard.classList.add('border-white/20');
+            instagramCard.classList.remove('border-white');
+            instagramCard.classList.add('border-white/20');
+            smartRadio.style.background = 'transparent';
+            volumeRadio.style.background = 'transparent';
+            instagramRadio.style.background = 'transparent';
+
+            if (type === 'smart') {
+                // Highlight smart
+                smartCard.classList.remove('border-white/20');
+                smartCard.classList.add('border-white');
+                smartRadio.style.background = '#fff';
+
+                // Update slider - minimum 500 leads (€1,500 minimum order)
+                document.getElementById('leadSlider').min = 500;
+                document.getElementById('leadSlider').value = 500; // Always start at minimum
+                document.getElementById('sliderLabels').innerHTML = '<span>500</span><span>5,000</span><span>10,000+</span>';
+                document.getElementById('leadTypeLabel').textContent = 'Smart Leads';
+
+                // Show/hide features
+                document.getElementById('smartFeatures').style.display = 'grid';
+                document.getElementById('volumeFeatures').style.display = 'none';
+                document.getElementById('instagramFeatures').style.display = 'none';
+
+            } else if (type === 'volume') {
+                // Highlight volume
+                volumeCard.classList.remove('border-white/20');
+                volumeCard.classList.add('border-white');
+                volumeRadio.style.background = '#fff';
+
+                // Update slider - minimum 3,750 leads (€1,500 minimum order)
+                document.getElementById('leadSlider').min = 3750;
+                document.getElementById('leadSlider').value = 3750; // Always start at minimum
+                document.getElementById('sliderLabels').innerHTML = '<span>3,750</span><span>10,000</span><span>20,000+</span>';
+                document.getElementById('leadTypeLabel').textContent = 'Volume Leads';
+
+                // Show/hide features
+                document.getElementById('smartFeatures').style.display = 'none';
+                document.getElementById('volumeFeatures').style.display = 'grid';
+                document.getElementById('instagramFeatures').style.display = 'none';
+            } else if (type === 'instagram') {
+                // Highlight instagram
+                instagramCard.classList.remove('border-white/20');
+                instagramCard.classList.add('border-white');
+                instagramRadio.style.background = '#fff';
+
+                // Update slider - minimum 1,000 profiles (€1,500 minimum order)
+                document.getElementById('leadSlider').min = 1000;
+                document.getElementById('leadSlider').value = 1000; // Always start at minimum
+                document.getElementById('sliderLabels').innerHTML = '<span>1,000</span><span>5,000</span><span>10,000+</span>';
+                document.getElementById('leadTypeLabel').textContent = 'Instagram Profiles';
+
+                // Show/hide features
+                document.getElementById('smartFeatures').style.display = 'none';
+                document.getElementById('volumeFeatures').style.display = 'none';
+                document.getElementById('instagramFeatures').style.display = 'grid';
+            }
+
+            updatePricing();
+        }
+
+        function selectPurchaseType(type) {
+            currentPurchaseType = type;
+
+            // Update button states
+            document.getElementById('oneTimeBtn').classList.remove('active');
+            document.getElementById('month1Btn').classList.remove('active');
+            document.getElementById('month2Btn').classList.remove('active');
+            document.getElementById('month3Btn').classList.remove('active');
+
+            if (type === 'onetime') {
+                document.getElementById('oneTimeBtn').classList.add('active');
+            } else if (type === 'month1') {
+                document.getElementById('month1Btn').classList.add('active');
+            } else if (type === 'month2') {
+                document.getElementById('month2Btn').classList.add('active');
+            } else if (type === 'month3') {
+                document.getElementById('month3Btn').classList.add('active');
+            }
+
+            updatePricing();
+        }
+
+        // NEW PRICING CALCULATOR WITH UPDATED DISCOUNT STRUCTURE
+        function updatePricing() {
+            const leadCount = parseInt(document.getElementById('leadSlider').value);
+
+            document.getElementById('leadCount').textContent = leadCount.toLocaleString();
+
+            let basePrice;
+            let pricePerLead;
+            let discountPercent = 0;
+            let showDiscount = false;
+            let discountLabel = '';
+            let subscriptionNote = '';
+
+            // Determine base price per lead
+            if (currentLeadType === 'smart') {
+                basePrice = 3.00;
+            } else if (currentLeadType === 'volume') {
+                basePrice = 0.40;
+            } else if (currentLeadType === 'instagram') {
+                basePrice = 1.50;
+            }
+
+            // Calculate discount based on purchase type
+            if (currentPurchaseType === 'onetime') {
+                // Volume discount: 8% for 10k+
+                if (leadCount >= 10000) {
+                    discountPercent = 8;
+                    discountLabel = '8% Volume Discount';
+                    showDiscount = true;
+                }
+            } else if (currentPurchaseType === 'month1') {
+                discountPercent = 10;
+                discountLabel = 'Month 1: 10% Discount';
+                showDiscount = true;
+                subscriptionNote = 'Monthly subscription - cancel anytime';
+            } else if (currentPurchaseType === 'month2') {
+                discountPercent = 12;
+                discountLabel = 'Month 2: 12% Discount';
+                showDiscount = true;
+                subscriptionNote = 'Monthly subscription - cancel anytime';
+            } else if (currentPurchaseType === 'month3') {
+                discountPercent = 15;
+                discountLabel = 'Month 3+: 15% Discount (Max)';
+                showDiscount = true;
+                subscriptionNote = 'Monthly subscription - cancel anytime';
+            }
+
+            pricePerLead = basePrice * (1 - discountPercent / 100);
+            const subtotal = leadCount * basePrice;
+            const discountAmount = subtotal * (discountPercent / 100);
+            const total = subtotal - discountAmount;
+
+            // Update display
+            document.getElementById('pricePerLead').textContent = pricePerLead.toFixed(2);
+            document.getElementById('subtotalPrice').textContent = Math.round(subtotal).toLocaleString();
+            document.getElementById('totalPrice').textContent = Math.round(total).toLocaleString();
+
+            // Show/hide discount row
+            const discountRow = document.getElementById('discountRow');
+            if (showDiscount) {
+                discountRow.style.display = 'flex';
+                document.getElementById('discountLabel').textContent = discountLabel;
+                document.getElementById('discountAmount').textContent = Math.round(discountAmount).toLocaleString();
+            } else {
+                discountRow.style.display = 'none';
+            }
+
+            // Show subscription note
+            const subscriptionNoteEl = document.getElementById('subscriptionNote');
+            if (subscriptionNote) {
+                subscriptionNoteEl.style.display = 'block';
+                document.getElementById('subscriptionNoteText').textContent = subscriptionNote;
+            } else {
+                subscriptionNoteEl.style.display = 'none';
+            }
+
+        }
+
+        // Initialize pricing
+        updatePricing();
+    </script>
+
+   
+</body>
+</html>

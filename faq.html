@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Village | Research. Strategy. Execution.</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text x='50' y='50' font-size='48' font-weight='900' font-family='Arial' fill='%23fff' text-anchor='middle' dominant-baseline='central'>NV</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+    html, body {
+        font-family: 'Sora', sans-serif;
+        background-color: #000000;
+        color: #ffffff;
+        font-size: 16px;
+        line-height: 1.6;
+        font-weight: 400;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+
+    p, li, span {
+        font-weight: 400;
+        color: #9ca3af;
+    }
+
+    nav a, nav button {
+        font-weight: 600;
+    }
+
+    button, a[class*="px-"] {
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    /* FAQ interactions */
+    .faq-item {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+    }
+
+    .faq-answer.expanded {
+        max-height: 500px;
+    }
+
+    .faq-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .faq-icon.rotated {
+        transform: rotate(180deg);
+    }
+
+    /* Dice menu styles */
+    .dice-menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        padding: 4px;
+    }
+
+    .dice-dot {
+        width: 6px;
+        height: 6px;
+        background-color: white;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .dice-menu:hover .dice-dot {
+        background-color: #888;
+        transform: scale(1.1);
+    }
+
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 73px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.98);
+        border-bottom: 1px solid #333;
+        z-index: 40;
+    }
+
+    .mobile-menu.active {
+        display: block;
+    }
+
+    @media (min-width: 768px) {
+        .dice-menu {
+            display: none;
+        }
+    }
+    </style>
+</head>
+<body class="antialiased bg-black text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-black/95 backdrop-blur-md border-b border-gray-800 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="assets/new village logo desin.png" alt="New Village Logo" class="h-8 w-8 object-contain">
+                <div class="text-2xl font-black tracking-tight text-white">New Village</div>
+            </a>
+            
+            <ul class="hidden md:flex gap-8 items-center">
+                <li><a href="index.html#what-you-get" class="text-gray-300 hover:text-white transition font-medium">About Us</a></li>
+                <li><a href="index.html#pricing" class="text-gray-300 hover:text-white transition font-medium">Pricing</a></li>
+                <li><a href="faq.html" class="text-white font-medium">FAQ</a></li>
+                <li><a href="index.html#contact" class="text-gray-300 hover:text-white transition font-medium">Contact</a></li>
+                <li><a href="blog.html" class="text-gray-300 hover:text-white transition font-medium">Resources</a></li>
+            </ul>
+
+            <button onclick="window.location.href='index.html'" class="hidden md:block bg-white text-black px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition">
+                Back Home
+            </button>
+
+            <!-- Dice menu for mobile -->
+            <div class="md:hidden dice-menu" onclick="toggleMenu()">
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+                <div class="dice-dot"></div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="mobile-menu">
+            <ul class="flex flex-col p-6 gap-4">
+                <li><a href="index.html#what-you-get" class="text-gray-300 hover:text-white transition font-medium block">About Us</a></li>
+                <li><a href="index.html#pricing" class="text-gray-300 hover:text-white transition font-medium block">Pricing</a></li>
+                <li><a href="faq.html" class="text-white font-medium block">FAQ</a></li>
+                <li><a href="index.html#contact" class="text-gray-300 hover:text-white transition font-medium block">Contact</a></li>
+                <li><a href="blog.html" class="text-gray-300 hover:text-white transition font-medium block">Resources</a></li>
+                <li><button onclick="window.location.href='index.html'" class="bg-white text-black px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition text-center block w-full">Back Home</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-32 px-6 min-h-screen">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6 text-white text-center">
+                Frequently Asked Questions
+            </h1>
+            
+            <p class="text-2xl text-gray-400 mb-16 leading-relaxed text-center">
+                Everything you need to know about custom lead databases
+            </p>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq1')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">How do you find the pain points for a lead?</h3>
+                            <svg id="icon-faq1" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq1" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+                                We analyze each leads's website, social media, recent news, job postings, and industry context using AI to identify likely challenges and priorities. These are researched insights based on real data—not generic guesses. For example, if a company is hiring rapidly, we note potential scaling challenges. If they're in a specific industry facing regulatory changes, we flag that context. Painpoints are tailored to each lead based on their unique situation in the form of free text in the database.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq2')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">What's your email verification rate?</h3>
+                            <svg id="icon-faq2" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq2" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+                                We guarantee 90%+ email deliverability through multi-step verification. Every email goes through syntax validation, domain checks, and we also use industry standard SaaS for testing. If your bounce rate exceeds 20%, we replace bad leads for free. Zero risk.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq3')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">Can you get leads in my specific industry? What if im in a very niche market?</h3>
+                            <svg id="icon-faq3" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq3" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+                                Yes, we can, and lead generation is a business that can have the luxury of serving in many different industries at once. We build custom databases to YOUR ideal customer profile, regardless of industry. Whether you're targeting SaaS companies, real estate agencies, e-commerce brands, selling products on Instagram, healthcare providers, or any other B2B/B2C segment—just describe your target customer and we'll research them. Every database is built fresh to your specifications.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq4')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">How long does delivery take?</h3>
+                            <svg id="icon-faq4" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq4" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+                                Typically 2-3 business days for standard minimal orders. Smaller orders (under 1,000 leads) often deliver faster. Larger orders (10,000+) may take 7-10 days. Rush delivery is available for an additional fee if you need it faster. We'll confirm exact timeline when you place your order.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq5')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">What format are the leads delivered in?</h3>
+                            <svg id="icon-faq5" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq5" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+                                We send an (.xlsx) via email. The files are CRM-ready and can be imported into Google Sheets for multiple team members, Salesforce, HubSpot, Pipedrive, or any other tool. The database includes all fields: company info, decision maker contacts, pain points, lead scores, and transparent sourcing documentation. (All based on the order type you selected)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq6')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">Do you offer refunds?</h3>
+                            <svg id="icon-faq6" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq6" class="faq-answer">
+                        <div class="px-6 pb-6">
+                           <p class="text-gray-400 leading-relaxed">
+    We do not offer refunds as our services are custom-built and delivered based on client-provided requirements.
+    A refund may be considered only in exceptional cases where verifiable evidence shows that
+    significantly more than 20% of delivered emails bounced, or that the delivered data clearly failed to match the agreed Ideal Customer Profile.
+    Any such request must be fully documented and is reviewed manually on a case-by-case basis.
+    Review and resolution, if any, may take up to 30 days and are granted solely at our discretion.
+</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq7')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">What if I need more than 10,000 leads?</h3>
+                            <svg id="icon-faq7" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq7" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+    For large-volume requests, please contact us directly.
+    You can reach out via email or book a Calendly call through the website,
+    and we’ll discuss scope, feasibility, and next steps.
+</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq8')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">Can I see a sample first?</h3>
+                            <svg id="icon-faq8" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq8" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+    We do not provide sample files.
+    However, all deliverables follow the same standardized template,
+    and the structure is demonstrated in detail in our YouTube videos.
+    Each order includes the same base layout, with columns populated according to the tier selected.
+</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 9 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq9')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">How is this different from ZoomInfo or Apollo?</h3>
+                            <svg id="icon-faq9" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq9" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+    ZoomInfo and Apollo are self-serve data platforms.
+    New Village provides custom data deliverables for clients who require a specific outcome rather than platform access.
+    If you are looking for a tool subscription, those platforms may be a better fit.
+</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 10 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq10')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">Do you provide phone numbers?</h3>
+                            <svg id="icon-faq10" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq10" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+    Phone numbers may be included when they are publicly available and relevant to the request.
+    This is an optional data point and is not guaranteed for every lead.
+    Availability varies by industry, company, and region.
+</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 11 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq11')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">Can I cancel my subscription anytime?</h3>
+                            <svg id="icon-faq11" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq11" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+    Subscriptions are optional and only available by agreement.
+    They are tied to ongoing custom work, not software access.
+    Cancellation terms are specified contractually and may include notice periods.
+</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 12 -->
+                <div class="faq-item bg-black/50 backdrop-blur-sm border-2 border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition">
+                    <div class="p-6" onclick="toggleFaq('faq12')">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white pr-4">What payment methods do you accept?</h3>
+                            <svg id="icon-faq12" class="faq-icon h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="faq12" class="faq-answer">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-400 leading-relaxed">
+    We accept bank transfers, PayPal, and cryptocurrencies including Bitcoin, Ethereum, and Solana.
+</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <p class="text-xl text-gray-400 mb-6">Still have questions?</p>
+                <a href="index.html#contact" class="inline-block bg-white text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-200 transition">
+                    Contact Us →
+                </a>
+            </div>
+        </div>
+    </section>
+
+   <!-- MODERN FOOTER - PURE BLACK -->
+<footer class="py-16 px-6 border-t border-gray-800" style="background-color: #000;">
+    <div class="max-w-6xl mx-auto">
+        
+        <!-- Top Section -->
+        <div class="grid md:grid-cols-3 gap-12 mb-12">
+            
+            <!-- Logo & Tagline -->
+            <div class="md:col-span-1">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="assets/new village logo desin.png" alt="New Village Logo" class="h-12 w-12 object-contain">
+                    <div class="text-3xl font-black tracking-tight text-white">New Village</div>
+                </div>
+                <p class="text-gray-400 text-lg mb-4">Research. Strategy. Execution.</p>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    Custom lead databases built to your exact Ideal Customer Profile. Verified contacts, AI-enriched data, and guaranteed deliverability.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#what-you-get" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                    <li><a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+                    <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Resources</a></li>
+                    <li><a href="policies.html" class="text-gray-400 hover:text-white transition">Policies</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Get in Touch</h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="mailto:niko.newvillage@proton.me" class="text-gray-400 hover:text-white transition block">
+                            <div class="text-xs text-gray-500 mb-1">Email</div>
+                            <div class="font-semibold">niko.newvillage@proton.me</div>
+                        </a>
+                    </li>
+                    <li>
+                        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="text-left w-full">
+                            <div class="text-xs text-gray-500 mb-1">Schedule</div>
+                            <div class="font-semibold text-gray-400 hover:text-white transition">Book a Meeting →</div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-500 text-sm">
+                &copy; 2024 New Village. All rights reserved.
+            </p>
+        </div>
+
+    </div>
+</footer>
+ <script>
+        function toggleFaq(faqId) {
+            const answer = document.getElementById(faqId);
+            const icon = document.getElementById('icon-' + faqId);
+            answer.classList.toggle('expanded');
+            icon.classList.toggle('rotated');
+        }
+
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+    </script>
+    <script>
+        function toggleFaq(faqId) {
+            const answer = document.getElementById(faqId);
+            const icon = document.getElementById('icon-' + faqId);
+            
+            answer.classList.toggle('expanded');
+            icon.classList.toggle('rotated');
+        }
+    </script>
+
+</body>
+</html>
