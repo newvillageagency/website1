@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Village | Research. Strategy. Execution.</title>
 
+    <!-- Open Graph Meta Tags for WhatsApp & Social Media -->
+    <meta property="og:title" content="New Village | Custom Verified Lead Databases">
+    <meta property="og:description" content="Verified+Enriched Contacts + AI Pain Points + Quality Scoring. Any Industry. Any Size. Research. Strategy. Execution.">
+    <meta property="og:image" content="https://yourwebsite.com/assets/new village logo desin.png">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="New Village | Custom Verified Lead Databases">
+    <meta name="twitter:description" content="Verified+Enriched Contacts + AI Pain Points + Quality Scoring. Any Industry. Any Size.">
+    <meta name="twitter:image" content="https://yourwebsite.com/assets/new village logo desin.png">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text x='50' y='50' font-size='48' font-weight='900' font-family='Arial' fill='%23fff' text-anchor='middle' dominant-baseline='central'>NV</text></svg>">
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -47,24 +60,32 @@
         .dice-menu {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 3px;
-            width: 36px;
-            height: 36px;
+            gap: 4px;
+            width: 44px;
+            height: 44px;
             cursor: pointer;
-            padding: 4px;
+            padding: 6px;
+            background: transparent;
+            border: none;
         }
 
         .dice-dot {
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             background-color: white;
             border-radius: 50%;
             transition: all 0.3s ease;
         }
 
-        .dice-menu:hover .dice-dot {
+        .dice-menu:hover .dice-dot,
+        .dice-menu:focus .dice-dot {
             background-color: #888;
             transform: scale(1.1);
+        }
+
+        .dice-menu:focus {
+            outline: 2px solid white;
+            outline-offset: 2px;
         }
 
         .mobile-menu {
@@ -138,7 +159,7 @@
         }
 
         .service-details.expanded {
-            max-height: 2000px;
+            max-height: 5000px;
         }
 
         .learn-more-btn {
@@ -354,7 +375,7 @@
                 Book a Meeting
             </button>
 
-            <div class="md:hidden dice-menu" onclick="toggleMenu()">
+            <button class="md:hidden dice-menu" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
                 <div class="dice-dot"></div>
                 <div class="dice-dot"></div>
                 <div class="dice-dot"></div>
@@ -364,53 +385,53 @@
                 <div class="dice-dot"></div>
                 <div class="dice-dot"></div>
                 <div class="dice-dot"></div>
-            </div>
+            </button>
         </div>
 
         <div id="mobileMenu" class="mobile-menu">
             <ul class="flex flex-col p-6 gap-4">
-                <li><a href="#what-you-get" class="text-gray-300 hover:text-white transition font-medium block">About Us</a></li>
-                <li><a href="#pricing" class="text-gray-300 hover:text-white transition font-medium block">Pricing</a></li>
-                <li><a href="faq.html" class="text-gray-300 hover:text-white transition font-medium block">FAQ</a></li>
-                <li><a href="#contact" class="text-gray-300 hover:text-white transition font-medium block">Contact</a></li>
-                <li><a href="blog.html" class="text-gray-300 hover:text-white transition font-medium block">Resources</a></li>
-                <li><button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="bg-white text-black px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition text-center block w-full">Book a Meeting</button></li>
+                <li><a href="#what-you-get" class="text-gray-300 hover:text-white active:text-white transition font-medium block py-2" onclick="closeMenu()">About Us</a></li>
+                <li><a href="#pricing" class="text-gray-300 hover:text-white active:text-white transition font-medium block py-2" onclick="closeMenu()">Pricing</a></li>
+                <li><a href="faq.html" class="text-gray-300 hover:text-white active:text-white transition font-medium block py-2">FAQ</a></li>
+                <li><a href="#contact" class="text-gray-300 hover:text-white active:text-white transition font-medium block py-2" onclick="closeMenu()">Contact</a></li>
+                <li><a href="blog.html" class="text-gray-300 hover:text-white active:text-white transition font-medium block py-2">Resources</a></li>
+                <li><button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko-newvillage-proton'});closeMenu();return false;" class="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 active:bg-gray-300 transition text-center block w-full min-h-[44px]">Book a Meeting</button></li>
             </ul>
         </div>
     </nav>
 
     <div class="hero">
         <!-- Hero Section with Video -->
-        <section class="relative pt-32 pb-20 px-6 min-h-screen flex items-center overflow-hidden">
-            <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover opacity-80">
+        <section class="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 min-h-screen flex items-center overflow-hidden">
+            <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover opacity-80 hidden md:block">
                 <source src="assets/video.mp4" type="video/mp4">
             </video>
 
             <div class="absolute top-0 left-0 w-full h-full bg-black/60"></div>
 
             <div class="max-w-5xl mx-auto text-center relative z-10">
-                <div class="inline-block bg-white text-black px-4 py-1.5 rounded-full text-sm font-semibold uppercase tracking-wider mb-6">
+                <div class="inline-block bg-white text-black px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider mb-4 sm:mb-6">
                     Research. Strategy. Execution.
                 </div>
 
-                <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-tight mb-3 text-white">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-tight mb-2 sm:mb-3 text-white">
                     Custom Verified Lead Databases
                 </h1>
 
-                <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8 text-white">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-6 sm:mb-8 text-white">
                     Any Industry. Any Size.
-                </h1>
-
-                <h2 class="text-xl md:text-2xl text-white mb-8 leading-relaxed max-w-4xl mx-auto font-semibold">
-                    Verified+Enriched Contacts + AI Pain Points + Quality Scoring
                 </h2>
 
-                <p class="text-xl md:text-2xl text-white mb-8 leading-relaxed max-w-4xl mx-auto font-semibold">
+                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 sm:mb-8 leading-relaxed max-w-4xl mx-auto font-semibold">
+                    Verified+Enriched Contacts + AI Pain Points + Quality Scoring
+                </p>
+
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-8 sm:mb-10 leading-relaxed max-w-3xl mx-auto">
                     Custom databases built to YOUR ideal customer profile. We manually research leads that match. No scraping. No old databases. Custom, targeted research for your order only.
                 </p>
 
                 <div class="flex justify-center">
-                    <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="bg-white text-black px-16 py-5 rounded-xl font-bold text-xl hover:bg-gray-200 hover:scale-105 transition-all shadow-2xl">
+                    <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko-newvillage-proton'});return false;" class="bg-white text-black px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-5 rounded-xl font-bold text-base sm:text-lg md:text-xl hover:bg-gray-200 hover:scale-105 active:scale-95 transition-all shadow-2xl min-h-[56px]">
                         Book a Meeting
                     </button>
                 </div>
@@ -418,33 +439,33 @@
         </section>
 
         <!-- What You Get Section - REDESIGNED SEXY VERSION (NO EMOJIS) -->
-<section id="what-you-get" class="section-with-stars py-32 px-6 border-t border-white/5 relative overflow-hidden">
+<section id="what-you-get" class="section-with-stars py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-6 border-t border-white/5 relative overflow-hidden">
     <!-- Ambient Glow Background -->
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent pointer-events-none"></div>
-    
+
     <div class="max-w-6xl mx-auto relative z-10">
         <!-- Section Header -->
-        <div class="text-center mb-24">
-            <h2 class="text-5xl md:text-6xl font-black tracking-tight mb-6 text-white">
+        <div class="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mb-4 sm:mb-6 text-white">
                 Why New Village is Built Different
             </h2>
         </div>
 
-        <div class="grid gap-8">
+        <div class="grid gap-4 sm:gap-6">
             <!-- Card 1: What sort of leads do you need? -->
             <div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
-                <div class="p-10 cursor-pointer" onclick="toggleCard('details4')">
+                <div class="p-6 sm:p-8 md:p-10 cursor-pointer" onclick="toggleCard('details4')">
                     <div class="flex justify-between items-start">
                         <div class="flex-1">
-                            <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                            <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-2 sm:mb-4 text-white group-hover:text-white/90 transition-colors">
                                 What sort of leads do you need?
                             </h3>
-                            <p class="text-xl text-white/60 font-medium">
+                            <p class="text-base sm:text-lg md:text-xl text-white/60 font-medium">
                                 B2B? B2C? We got you!
                             </p>
                         </div>
-                        <button id="btndetails4" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <button id="btndetails4" class="learn-more-btn ml-4 sm:ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110 min-h-[44px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
@@ -452,17 +473,17 @@
                 </div>
 
                 <div id="details4" class="service-details">
-                    <div class="px-10 pb-10 space-y-6">
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                            <h4 class="text-2xl font-bold text-white mb-4">We Build Databases for Any Market</h4>
-                            <p class="text-white/70 text-lg leading-relaxed">
+                    <div class="px-6 sm:px-8 md:px-10 pb-6 sm:pb-8 md:pb-10 space-y-4 sm:space-y-6">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 md:p-10 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-4">We Build Databases for Any Market</h4>
+                            <p class="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">
                                 Whether you're targeting businesses or consumers, we customize our research to match your exact audience. No market is too niche, no Ideal Customer Profile too specific.
                             </p>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                            <h4 class="text-2xl font-bold text-white mb-6">B2B Lead Examples</h4>
-                            <ul class="space-y-3 text-white/70 text-lg">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 md:p-10 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-6">B2B Lead Examples</h4>
+                            <ul class="space-y-3 text-white/70 text-sm sm:text-base md:text-lg">
                                 <li class="flex items-start gap-3">
                                     <span class="text-white text-xl mt-1">•</span>
                                     <span>SaaS decision makers (CTO, VP Engineering, Product Managers)</span>
@@ -486,9 +507,9 @@
                             </ul>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                            <h4 class="text-2xl font-bold text-white mb-6">B2C Lead Examples</h4>
-                            <ul class="space-y-3 text-white/70 text-lg">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 md:p-10 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-6">B2C Lead Examples</h4>
+                            <ul class="space-y-3 text-white/70 text-sm sm:text-base md:text-lg">
                                 <li class="flex items-start gap-3">
                                     <span class="text-white text-xl mt-1">•</span>
                                     <span>Homeowners in specific ZIP codes or property values</span>
@@ -512,9 +533,9 @@
                             </ul>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                            <h4 class="text-2xl font-bold text-white mb-4">Your Custom Requirements</h4>
-                            <p class="text-white/70 text-lg leading-relaxed">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 md:p-10 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-4">Your Custom Requirements</h4>
+                            <p class="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">
                                 <strong class="text-white font-black">Have a unique audience?</strong> We research and verify leads based on ANY criteria you define—industry, location, company size, tech stack, recent funding, hiring patterns, or custom behavioral signals. Just tell us who you're looking for.
                             </p>
                         </div>
@@ -523,18 +544,18 @@
             </div>
         <!-- Card: Targeted Instagram Profile Lists (FINAL VERSION) -->
 <div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
-    <div class="p-10 cursor-pointer" onclick="toggleCard('details5')">
+    <div class="p-6 sm:p-8 md:p-10 cursor-pointer" onclick="toggleCard('details5')">
         <div class="flex justify-between items-start">
             <div class="flex-1">
-                <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-2 sm:mb-4 text-white group-hover:text-white/90 transition-colors">
                     Selling on Instagram? We Find Your Perfect Customer
                 </h3>
-                <p class="text-xl text-white/60 font-medium">
+                <p class="text-base sm:text-lg md:text-xl text-white/60 font-medium">
                     Targeted Instagram profile lists based on real engagement behavior.
                 </p>
             </div>
-            <button id="btndetails5" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <button id="btndetails5" class="learn-more-btn ml-4 sm:ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110 min-h-[44px]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
             </button>
@@ -542,48 +563,48 @@
     </div>
 
     <div id="details5" class="service-details">
-        <div class="px-10 pb-10 space-y-6">
+        <div class="px-6 sm:px-8 md:px-10 pb-6 sm:pb-8 md:pb-10 space-y-4 sm:space-y-6">
             <!-- WHY MOST INSTAGRAM LEAD GENERATION FAILS -->
-            <div class="bg-white/[0.05] backdrop-blur-sm p-8 rounded-2xl border-2 border-white/20">
-                <h4 class="text-2xl font-bold text-white mb-4">Why Most Instagram Lead Generation Fails</h4>
-                <p class="text-white/70 text-lg leading-relaxed mb-6">
+            <div class="bg-white/[0.05] backdrop-blur-sm p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl border-2 border-white/20">
+                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4">Why Most Instagram Lead Generation Fails</h4>
+                <p class="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6">
                     Most people try one of three approaches—and they all fail:
                 </p>
-                <ul class="space-y-4 text-white/70 text-lg mb-6">
-                    <li class="flex items-start gap-3">
-                        <span class="text-white/50 text-2xl mt-0">✗</span>
+                <ul class="space-y-3 sm:space-y-4 text-white/70 text-sm sm:text-base md:text-lg mb-4 sm:mb-6">
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <span class="text-white/50 text-xl sm:text-2xl mt-0">✗</span>
                         <div>
                             <p class="text-white font-bold mb-1">Do it manually</p>
                             <p>Scroll through thousands of profiles for weeks. No system for finding actual buyers. Wasted time, random results.</p>
                         </div>
                     </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-white/50 text-2xl mt-0">✗</span>
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <span class="text-white/50 text-xl sm:text-2xl mt-0">✗</span>
                         <div>
                             <p class="text-white font-bold mb-1">Use shady automation tools</p>
                             <p>Phantombuster, IGScraper, Jarvee—your account gets flagged and banned. Instagram isn't dumb. They detect fraud.</p>
                         </div>
                     </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-white/50 text-2xl mt-0">✗</span>
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <span class="text-white/50 text-xl sm:text-2xl mt-0">✗</span>
                         <div>
                             <p class="text-white font-bold mb-1">Hire cheap VAs on Fiverr/Upwork</p>
                             <p>Generalists with no methodology. Inconsistent quality. You waste time training them and money on bad results.</p>
                         </div>
                     </li>
                 </ul>
-                <p class="text-white font-bold text-xl">
+                <p class="text-white font-bold text-base sm:text-lg md:text-xl">
                     We have a proven system for finding engaged buyers. Professional research with quality standards—not random scraping.
                 </p>
             </div>
 
             <!-- WHAT IT IS -->
-            <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                <h4 class="text-2xl font-bold text-white mb-4">What Are Targeted Instagram Profile Lists?</h4>
-                <p class="text-white/70 text-lg leading-relaxed mb-4">
+            <div class="bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4">What Are Targeted Instagram Profile Lists?</h4>
+                <p class="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                     We compile lists of Instagram profiles based on who they follow, what content they like, and which posts they comment on.
                 </p>
-                <div class="space-y-3 text-white/70 text-lg">
+                <div class="space-y-2 sm:space-y-3 text-white/70 text-sm sm:text-base md:text-lg">
                     <p><strong class="text-white font-black">Selling protein powder?</strong> We find people who comment on gym memes and engage with supplement brands.</p>
                     <p><strong class="text-white font-black">Launching a fashion brand?</strong> We find people who engage with streetwear accounts and fashion influencers.</p>
                     <p><strong class="text-white font-black">Offering trading signals?</strong> We find people who engage with crypto traders and financial content.</p>
@@ -591,66 +612,66 @@
             </div>
 
             <!-- HOW IT WORKS -->
-            <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                <h4 class="text-2xl font-bold text-white mb-6">How It Works</h4>
-                <div class="space-y-4">
-                    <div class="flex gap-4 items-start">
-                        <div class="bg-white text-black rounded-xl w-12 h-12 flex items-center justify-center font-black text-xl flex-shrink-0">1</div>
+            <div class="bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-6">How It Works</h4>
+                <div class="space-y-3 sm:space-y-4">
+                    <div class="flex gap-3 sm:gap-4 items-start">
+                        <div class="bg-white text-black rounded-xl w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center font-black text-lg sm:text-xl flex-shrink-0">1</div>
                         <div>
-                            <h5 class="text-xl font-bold text-white mb-2">You tell us what your customers engage with</h5>
-                            <p class="text-white/70">Gym memes? Fashion posts? Crypto content? We need to know what your ideal customer is actively liking and commenting on.</p>
+                            <h5 class="text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-2">You tell us what your customers engage with</h5>
+                            <p class="text-white/70 text-sm sm:text-base">Gym memes? Fashion posts? Crypto content? We need to know what your ideal customer is actively liking and commenting on.</p>
                         </div>
                     </div>
-                    <div class="flex gap-4 items-start">
-                        <div class="bg-white text-black rounded-xl w-12 h-12 flex items-center justify-center font-black text-xl flex-shrink-0">2</div>
+                    <div class="flex gap-3 sm:gap-4 items-start">
+                        <div class="bg-white text-black rounded-xl w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center font-black text-lg sm:text-xl flex-shrink-0">2</div>
                         <div>
-                            <h5 class="text-xl font-bold text-white mb-2">We identify the accounts they follow</h5>
-                            <p class="text-white/70">Find the meme pages, influencers, brands, and creators your target audience engages with most</p>
+                            <h5 class="text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-2">We identify the accounts they follow</h5>
+                            <p class="text-white/70 text-sm sm:text-base">Find the meme pages, influencers, brands, and creators your target audience engages with most</p>
                         </div>
                     </div>
-                    <div class="flex gap-4 items-start">
-                        <div class="bg-white text-black rounded-xl w-12 h-12 flex items-center justify-center font-black text-xl flex-shrink-0">3</div>
+                    <div class="flex gap-3 sm:gap-4 items-start">
+                        <div class="bg-white text-black rounded-xl w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center font-black text-lg sm:text-xl flex-shrink-0">3</div>
                         <div>
-                            <h5 class="text-xl font-bold text-white mb-2">We compile their engaged followers</h5>
-                            <p class="text-white/70">Extract usernames of people who actively comment, like, and interact—not passive scrollers</p>
+                            <h5 class="text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-2">We compile their engaged followers</h5>
+                            <p class="text-white/70 text-sm sm:text-base">Extract usernames of people who actively comment, like, and interact—not passive scrollers</p>
                         </div>
                     </div>
-                    <div class="flex gap-4 items-start">
-                        <div class="bg-white text-black rounded-xl w-12 h-12 flex items-center justify-center font-black text-xl flex-shrink-0">4</div>
+                    <div class="flex gap-3 sm:gap-4 items-start">
+                        <div class="bg-white text-black rounded-xl w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center font-black text-lg sm:text-xl flex-shrink-0">4</div>
                         <div>
-                            <h5 class="text-xl font-bold text-white mb-2">You get a ready-to-use profile list</h5>
-                            <p class="text-white/70">Organized spreadsheet with Instagram handles and profile links—ready for DM outreach or ad targeting</p>
+                            <h5 class="text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-2">You get a ready-to-use profile list</h5>
+                            <p class="text-white/70 text-sm sm:text-base">Organized spreadsheet with Instagram handles and profile links—ready for DM outreach or ad targeting</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- USE CASES -->
-            <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                <h4 class="text-2xl font-bold text-white mb-6">Who Uses This?</h4>
-                <div class="grid md:grid-cols-2 gap-4 text-white/70 text-lg">
+            <div class="bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-6">Who Uses This?</h4>
+                <div class="grid md:grid-cols-2 gap-3 sm:gap-4 text-white/70 text-sm sm:text-base md:text-lg">
                     <div>
-                        <p class="text-white font-bold mb-2">Fitness/Supplement Brands</p>
+                        <p class="text-white font-bold mb-1 sm:mb-2">Fitness/Supplement Brands</p>
                         <p>Target people who engage with gym content and fitness influencers</p>
                     </div>
                     <div>
-                        <p class="text-white font-bold mb-2">Fashion/Streetwear</p>
+                        <p class="text-white font-bold mb-1 sm:mb-2">Fashion/Streetwear</p>
                         <p>Target people who engage with fashion accounts and style influencers</p>
                     </div>
                     <div>
-                        <p class="text-white font-bold mb-2">OnlyFans/Creators</p>
+                        <p class="text-white font-bold mb-1 sm:mb-2">OnlyFans/Creators</p>
                         <p>Target followers of similar creators who pay for content</p>
                     </div>
                     <div>
-                        <p class="text-white font-bold mb-2">Crypto/Trading</p>
+                        <p class="text-white font-bold mb-1 sm:mb-2">Crypto/Trading</p>
                         <p>Target people who engage with traders and analysis accounts</p>
                     </div>
                     <div>
-                        <p class="text-white font-bold mb-2">Gaming/Esports</p>
+                        <p class="text-white font-bold mb-1 sm:mb-2">Gaming/Esports</p>
                         <p>Target people who engage with gaming content and streamers</p>
                     </div>
                     <div>
-                        <p class="text-white font-bold mb-2">Info Products/Courses</p>
+                        <p class="text-white font-bold mb-1 sm:mb-2">Info Products/Courses</p>
                         <p>Target people who engage with coaches and educational content</p>
                     </div>
                 </div>
@@ -666,18 +687,18 @@
 
             <!-- Card 2: Every Lead Includes -->
             <div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
-                <div class="p-10 cursor-pointer" onclick="toggleCard('details1')">
+                <div class="p-6 sm:p-8 md:p-10 cursor-pointer" onclick="toggleCard('details1')">
                     <div class="flex justify-between items-start">
                         <div class="flex-1">
-                            <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                            <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-2 sm:mb-4 text-white group-hover:text-white/90 transition-colors">
                                 Every Lead Includes
                             </h3>
-                            <p class="text-xl text-white/60 font-medium">
+                            <p class="text-base sm:text-lg md:text-xl text-white/60 font-medium">
                                 Six critical data points that make your outreach smarter, more relevant, and more effective.
                             </p>
                         </div>
-                        <button id="btndetails1" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <button id="btndetails1" class="learn-more-btn ml-4 sm:ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110 min-h-[44px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
@@ -685,65 +706,65 @@
                 </div>
 
                 <div id="details1" class="service-details">
-                    <div class="px-10 pb-10 grid md:grid-cols-2 gap-6">
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="px-6 sm:px-8 md:px-10 pb-6 sm:pb-8 md:pb-10 grid md:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                 </svg>
                             </div>
-                            <h4 class="text-xl font-bold text-white mb-3">Verified Decision Maker Contact</h4>
-                            <p class="text-white/70">Name, title, email, LinkedIn, phone (when publicly available)</p>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Verified Decision Maker Contact</h4>
+                            <p class="text-white/70 text-sm sm:text-base">Name, title, email, LinkedIn, phone (when publicly available)</p>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                 </svg>
                             </div>
-                            <h4 class="text-xl font-bold text-white mb-3">AI-Generated Pain Points</h4>
-                            <p class="text-white/70">Researched insights specific to each lead—so your outreach is personalized and relevant</p>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">AI-Generated Pain Points</h4>
+                            <p class="text-white/70 text-sm sm:text-base">Researched insights specific to each lead—so your outreach is personalized and relevant</p>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                                 </svg>
                             </div>
-                            <h4 class="text-xl font-bold text-white mb-3">Lead Quality Score</h4>
-                            <p class="text-white/70">Rated and prioritized for your review—focus on the best prospects first</p>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Lead Quality Score</h4>
+                            <p class="text-white/70 text-sm sm:text-base">Rated and prioritized for your review—focus on the best prospects first</p>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                 </svg>
                             </div>
-                            <h4 class="text-xl font-bold text-white mb-3">Company Intelligence</h4>
-                            <p class="text-white/70">Segment, category, key attributes customized to your Ideal Customer Profile</p>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Company Intelligence</h4>
+                            <p class="text-white/70 text-sm sm:text-base">Segment, category, key attributes customized to your Ideal Customer Profile</p>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </div>
-                            <h4 class="text-xl font-bold text-white mb-3">Transparent Sourcing</h4>
-                            <p class="text-white/70">See exactly where we found each data point—full documentation included</p>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Transparent Sourcing</h4>
+                            <p class="text-white/70 text-sm sm:text-base">See exactly where we found each data point—full documentation included</p>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
-                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-white/20 hover:scale-[1.02] transition-all">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                             </div>
-                            <h4 class="text-xl font-bold text-white mb-3">CRM-Ready Format</h4>
-                            <p class="text-white/70">Excel (.xlsx) or Google Sheets—import anywhere, use immediately</p>
+                            <h4 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">CRM-Ready Format</h4>
+                            <p class="text-white/70 text-sm sm:text-base">Excel (.xlsx) or Google Sheets—import anywhere, use immediately</p>
                         </div>
                     </div>
                 </div>
@@ -751,18 +772,18 @@
 
             <!-- Card 3: How It Works -->
             <div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
-                <div class="p-10 cursor-pointer" onclick="toggleCard('details2')">
+                <div class="p-6 sm:p-8 md:p-10 cursor-pointer" onclick="toggleCard('details2')">
                     <div class="flex justify-between items-start">
                         <div class="flex-1">
-                            <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                            <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-2 sm:mb-4 text-white group-hover:text-white/90 transition-colors">
                                 How It Works
                             </h3>
-                            <p class="text-xl text-white/60 font-medium">
+                            <p class="text-base sm:text-lg md:text-xl text-white/60 font-medium">
                                 Five steps from your ideal customer profile to a complete, verified database.
                             </p>
                         </div>
-                        <button id="btndetails2" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <button id="btndetails2" class="learn-more-btn ml-4 sm:ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110 min-h-[44px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
@@ -770,44 +791,44 @@
                 </div>
 
                 <div id="details2" class="service-details">
-                    <div class="px-10 pb-10 space-y-6">
-                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
-                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">1</div>
+                    <div class="px-6 sm:px-8 md:px-10 pb-6 sm:pb-8 md:pb-10 space-y-4 sm:space-y-6">
+                        <div class="flex gap-3 sm:gap-4 md:gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center font-black text-lg sm:text-xl md:text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">1</div>
                             <div>
-                                <h4 class="text-2xl font-bold text-white mb-3">You define your ideal customer profile</h4>
-                                <p class="text-white/70 text-lg">Industry, company size, location, decision maker role—whatever matters for your business</p>
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">You define your ideal customer profile</h4>
+                                <p class="text-white/70 text-sm sm:text-base md:text-lg">Industry, company size, location, decision maker role—whatever matters for your business</p>
                             </div>
                         </div>
 
-                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
-                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">2</div>
+                        <div class="flex gap-3 sm:gap-4 md:gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center font-black text-lg sm:text-xl md:text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">2</div>
                             <div>
-                                <h4 class="text-2xl font-bold text-white mb-3">We manually research companies that match</h4>
-                                <p class="text-white/70 text-lg">No scraping. No old databases. Custom, targeted research for your order only.</p>
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">We manually research companies that match</h4>
+                                <p class="text-white/70 text-sm sm:text-base md:text-lg">No scraping. No old databases. Custom, targeted research for your order only.</p>
                             </div>
                         </div>
 
-                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
-                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">3</div>
+                        <div class="flex gap-3 sm:gap-4 md:gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center font-black text-lg sm:text-xl md:text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">3</div>
                             <div>
-                                <h4 class="text-2xl font-bold text-white mb-3">AI enriches each lead with pain point analysis</h4>
-                                <p class="text-white/70 text-lg">Our AI analyzes company websites, news, and industry context to identify likely challenges</p>
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">AI enriches each lead with pain point analysis</h4>
+                                <p class="text-white/70 text-sm sm:text-base md:text-lg">Our AI analyzes company websites, news, and industry context to identify likely challenges</p>
                             </div>
                         </div>
 
-                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
-                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">4</div>
+                        <div class="flex gap-3 sm:gap-4 md:gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center font-black text-lg sm:text-xl md:text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">4</div>
                             <div>
-                                <h4 class="text-2xl font-bold text-white mb-3">We verify all contact information</h4>
-                                <p class="text-white/70 text-lg">Multi-step verification process - 85%+ deliverability guarantee</p>
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">We verify all contact information</h4>
+                                <p class="text-white/70 text-sm sm:text-base md:text-lg">Multi-step verification process - 85%+ deliverability guarantee</p>
                             </div>
                         </div>
 
-                        <div class="flex gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
-                            <div class="bg-white text-black rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">5</div>
+                        <div class="flex gap-3 sm:gap-4 md:gap-6 items-start bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all group/step">
+                            <div class="bg-white text-black rounded-2xl w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center font-black text-lg sm:text-xl md:text-2xl flex-shrink-0 group-hover/step:scale-110 transition-transform">5</div>
                             <div>
-                                <h4 class="text-2xl font-bold text-white mb-3">You receive a complete, sourced database</h4>
-                                <p class="text-white/70 text-lg"><strong class="text-white font-black">Typical delivery: 3-5 business days</strong></p>
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">You receive a complete, sourced database</h4>
+                                <p class="text-white/70 text-sm sm:text-base md:text-lg"><strong class="text-white font-black">Typical delivery: 3-5 business days</strong></p>
                             </div>
                         </div>
                     </div>
@@ -816,18 +837,18 @@
 
             <!-- Card 4: What is a Smart Lead? -->
             <div class="service-card group bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl overflow-hidden hover:border-white/40 hover:bg-white/[0.05] transition-all duration-300 hover:shadow-[0_20px_80px_rgba(255,255,255,0.1)]">
-                <div class="p-10 cursor-pointer" onclick="toggleCard('details3')">
+                <div class="p-6 sm:p-8 md:p-10 cursor-pointer" onclick="toggleCard('details3')">
                     <div class="flex justify-between items-start">
                         <div class="flex-1">
-                            <h3 class="text-3xl font-black mb-4 text-white group-hover:text-white/90 transition-colors">
+                            <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-2 sm:mb-4 text-white group-hover:text-white/90 transition-colors">
                                 What is a Smart Lead?
                             </h3>
-                            <p class="text-xl text-white/60 font-medium">
+                            <p class="text-base sm:text-lg md:text-xl text-white/60 font-medium">
                                 The difference between a contact and a conversation-ready prospect.
                             </p>
                         </div>
-                        <button id="btndetails3" class="learn-more-btn ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <button id="btndetails3" class="learn-more-btn ml-4 sm:ml-6 text-white/60 hover:text-white transition-all duration-300 hover:scale-110 min-h-[44px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
@@ -835,45 +856,45 @@
                 </div>
 
                 <div id="details3" class="service-details">
-                    <div class="px-10 pb-10 space-y-6">
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                            <h4 class="text-2xl font-bold text-white mb-6">Regular Lead vs. Smart Lead</h4>
-                            <div class="space-y-6">
-                                <div class="bg-white/[0.02] p-6 rounded-xl border border-white/5">
-                                    <p class="text-white/50 mb-2 font-bold text-sm uppercase tracking-wider">Regular Lead:</p>
-                                    <p class="text-white/70 text-lg">"john@company.com - VP Sales"</p>
+                    <div class="px-6 sm:px-8 md:px-10 pb-6 sm:pb-8 md:pb-10 space-y-4 sm:space-y-6">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-6">Regular Lead vs. Smart Lead</h4>
+                            <div class="space-y-4 sm:space-y-6">
+                                <div class="bg-white/[0.02] p-4 sm:p-6 rounded-xl border border-white/5">
+                                    <p class="text-white/50 mb-2 font-bold text-xs sm:text-sm uppercase tracking-wider">Regular Lead:</p>
+                                    <p class="text-white/70 text-sm sm:text-base md:text-lg">"john@company.com - VP Sales"</p>
                                 </div>
-                                <div class="bg-white/[0.05] p-6 rounded-xl border border-white/20">
-                                    <p class="text-white mb-2 font-bold text-sm uppercase tracking-wider">Smart Lead:</p>
-                                    <p class="text-white/90 text-lg leading-relaxed">"John Smith, VP Sales at TechCorp (50-200 employees, B2B SaaS) - Likely pain points: scaling outbound without burning budget, need verified data for cold email compliance. Quality Score: 87/100"</p>
+                                <div class="bg-white/[0.05] p-4 sm:p-6 rounded-xl border border-white/20">
+                                    <p class="text-white mb-2 font-bold text-xs sm:text-sm uppercase tracking-wider">Smart Lead:</p>
+                                    <p class="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed">"John Smith, VP Sales at TechCorp (50-200 employees, B2B SaaS) - Likely pain points: scaling outbound without burning budget, need verified data for cold email compliance. Quality Score: 87/100"</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                            <h4 class="text-2xl font-bold text-white mb-6">Why Smart Leads Work Better</h4>
-                            <p class="text-white/70 text-lg mb-6">Instead of sending generic "Hey, wanna chat?" messages to 1,000 people, you can:</p>
-                            <ul class="space-y-4 text-white/70 text-lg">
-                                <li class="flex items-start gap-3">
-                                    <svg class="w-6 h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-6">Why Smart Leads Work Better</h4>
+                            <p class="text-white/70 text-sm sm:text-base md:text-lg mb-4 sm:mb-6">Instead of sending generic "Hey, wanna chat?" messages to 1,000 people, you can:</p>
+                            <ul class="space-y-3 sm:space-y-4 text-white/70 text-sm sm:text-base md:text-lg">
+                                <li class="flex items-start gap-2 sm:gap-3">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                     </svg>
                                     <span>Reference their specific challenges in your first email</span>
                                 </li>
-                                <li class="flex items-start gap-3">
-                                    <svg class="w-6 h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <li class="flex items-start gap-2 sm:gap-3">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                     </svg>
                                     <span>Prioritize leads by quality score (focus on 80+ scores first)</span>
                                 </li>
-                                <li class="flex items-start gap-3">
-                                    <svg class="w-6 h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <li class="flex items-start gap-2 sm:gap-3">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                     </svg>
                                     <span>Segment by pain point type (customize your pitch)</span>
                                 </li>
-                                <li class="flex items-start gap-3">
-                                    <svg class="w-6 h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <li class="flex items-start gap-2 sm:gap-3">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                     </svg>
                                     <span>Sound like you actually researched them (because we did)</span>
@@ -881,16 +902,16 @@
                             </ul>
                         </div>
 
-                        <div class="bg-white/[0.03] backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-                            <h4 class="text-2xl font-bold text-white mb-6">The Difference</h4>
-                            <div class="space-y-4 text-lg leading-relaxed">
+                        <div class="bg-white/[0.03] backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                            <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-6">The Difference</h4>
+                            <div class="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg leading-relaxed">
                                 <p class="text-white/70">
                                     <strong class="text-white font-black">With regular leads:</strong> Generic outreach to contacts who may or may not be relevant.
                                 </p>
                                 <p class="text-white/70">
                                     <strong class="text-white font-black">With Smart Leads:</strong> Personalized outreach to pre-qualified prospects with context-aware messaging.
                                 </p>
-                                <p class="text-white font-bold text-xl mt-6">
+                                <p class="text-white font-bold text-base sm:text-lg md:text-xl mt-4 sm:mt-6">
                                     More relevant conversations. Better use of your time.
                                 </p>
                             </div>
@@ -900,43 +921,43 @@
             </div>
 
             <!-- Guarantee Cards Grid -->
-            <div class="mt-20">
-                <div class="grid md:grid-cols-2 gap-6">
+            <div class="mt-12 sm:mt-16 md:mt-20">
+                <div class="grid md:grid-cols-2 gap-4 sm:gap-6">
                     <!-- Card 1 -->
-                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
-                        <h3 class="text-2xl font-black mb-4 text-white">Custom, Targeted Data</h3>
-                        <p class="text-white/70 text-lg leading-relaxed">
+                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4 text-white">Custom, Targeted Data</h3>
+                        <p class="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">
                             Not recycled databases. New research for every order. Built specifically to YOUR ideal customer profile.
                         </p>
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
-                        <h3 class="text-2xl font-black mb-4 text-white">100% Matches Your Ideal Customer Profile</h3>
-                        <p class="text-white/70 text-lg leading-relaxed">
+                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4 text-white">100% Matches Your Ideal Customer Profile</h3>
+                        <p class="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">
                             If the leads don't match your ideal customer profile, full refund. No questions asked.
                         </p>
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
-                        <h3 class="text-2xl font-black mb-4 text-white">Built From Scratch</h3>
-                        <p class="text-white/70 text-lg leading-relaxed">
+                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4 text-white">Built From Scratch</h3>
+                        <p class="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">
                             Every database is newly built. Never recycled. Never resold. Custom research for your order only.
                         </p>
                     </div>
 
                     <!-- Card 4 -->
-                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
-                        <h3 class="text-2xl font-black mb-4 text-white">Direct Access</h3>
-                        <p class="text-white/70 text-lg leading-relaxed">
+                    <div class="bg-white/[0.03] backdrop-blur-xl border-2 border-white/20 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 hover:border-white hover:bg-white/[0.05] hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(255,255,255,0.15)] transition-all duration-300">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-3 sm:mb-4 text-white">Direct Access</h3>
+                        <p class="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed">
                             Work directly with the founder. No support tickets. No chatbots. Real communication with the person building your database.
                         </p>
                     </div>
                 </div>
 
                 <!-- Footer Text -->
-                <p class="text-center text-3xl font-black text-white mt-16">
+                <p class="text-center text-xl sm:text-2xl md:text-3xl font-black text-white mt-12 sm:mt-16">
                     Zero risk. Fully guaranteed.
                 </p>
             </div>
@@ -945,24 +966,24 @@
 </section>
 
         <!-- Pricing Section - REDESIGNED -->
-<section id="pricing" class="section-with-stars py-32 px-6 border-t border-white/5 relative overflow-hidden">
+<section id="pricing" class="section-with-stars py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 border-t border-white/5 relative overflow-hidden">
     <!-- Ambient Glow Background -->
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent pointer-events-none"></div>
-    
+
     <div class="max-w-6xl mx-auto relative z-10">
         <!-- Section Header -->
-        <div class="text-center mb-20">
-            <h2 class="text-5xl md:text-6xl font-black tracking-tight mb-6 text-white">
+        <div class="text-center mb-12 sm:mb-16 md:mb-20">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight mb-4 sm:mb-6 text-white">
                 Simple, Transparent Pricing
             </h2>
-            <p class="text-xl md:text-2xl text-white/60 max-w-2xl mx-auto">
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/60 max-w-2xl mx-auto">
                 Pay per lead. Optional subscriptions. No hidden fees.
             </p>
         </div>
 
         <!-- Lead Type Selector -->
-        <div class="mb-20">
-            <h3 class="text-3xl font-bold mb-10 text-white text-center">Choose Your Lead Type</h3>
+        <div class="mb-12 sm:mb-16 md:mb-20">
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 md:mb-10 text-white text-center">Choose Your Lead Type</h3>
 
             <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <!-- Smart Leads Card -->
@@ -985,37 +1006,37 @@
                         </div>
 
                         <!-- Features List -->
-                        <div class="space-y-3 mb-8">
-                            <div class="flex items-center gap-3 text-white/80">
-                                <span class="text-white text-xl">✓</span>
+                        <div class="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
+                            <div class="flex items-center gap-2 sm:gap-3 text-white/80 text-sm sm:text-base">
+                                <span class="text-white text-lg sm:text-xl">✓</span>
                                 <span class="font-medium">Segment + Category</span>
                             </div>
-                            <div class="flex items-center gap-3 text-white/80">
-                                <span class="text-white text-xl">✓</span>
+                            <div class="flex items-center gap-2 sm:gap-3 text-white/80 text-sm sm:text-base">
+                                <span class="text-white text-lg sm:text-xl">✓</span>
                                 <span class="font-medium">Decision Maker + Title</span>
                             </div>
-                            <div class="flex items-center gap-3 text-white/80">
-                                <span class="text-white text-xl">✓</span>
+                            <div class="flex items-center gap-2 sm:gap-3 text-white/80 text-sm sm:text-base">
+                                <span class="text-white text-lg sm:text-xl">✓</span>
                                 <span class="font-medium">AI Pain Point Analysis</span>
                             </div>
-                            <div class="flex items-center gap-3 text-white/80">
-                                <span class="text-white text-xl">✓</span>
+                            <div class="flex items-center gap-2 sm:gap-3 text-white/80 text-sm sm:text-base">
+                                <span class="text-white text-lg sm:text-xl">✓</span>
                                 <span class="font-medium">Lead Score (1-100)</span>
                             </div>
-                            <div class="flex items-center gap-3 text-white/80">
-                                <span class="text-white text-xl">✓</span>
+                            <div class="flex items-center gap-2 sm:gap-3 text-white/80 text-sm sm:text-base">
+                                <span class="text-white text-lg sm:text-xl">✓</span>
                                 <span class="font-medium">Email + Social + Phone</span>
                             </div>
                         </div>
 
                         <!-- Bottom Section -->
-                        <div class="border-t border-white/10 pt-6">
-                            <p class="text-xs uppercase tracking-wider text-white/40 mb-3 font-bold">Perfect for:</p>
-                            <p class="text-white/70 mb-4">B2B sales, personalized outreach, high-ticket deals</p>
+                        <div class="border-t border-white/10 pt-4 sm:pt-6">
+                            <p class="text-xs uppercase tracking-wider text-white/40 mb-2 sm:mb-3 font-bold">Perfect for:</p>
+                            <p class="text-white/70 mb-3 sm:mb-4 text-sm sm:text-base">B2B sales, personalized outreach, high-ticket deals</p>
                             <div class="flex items-baseline gap-2">
-                                <span class="text-white/50 text-sm">Starting at</span>
-                                <span class="text-3xl font-black text-white">€3</span>
-                                <span class="text-white/50">/lead</span>
+                                <span class="text-white/50 text-xs sm:text-sm">Starting at</span>
+                                <span class="text-2xl sm:text-3xl md:text-4xl font-black text-white">€3</span>
+                                <span class="text-white/50 text-sm">/lead</span>
                             </div>
                             <p class="text-xs text-white/40 mt-2">(Minimum €1,500 order)</p>
                         </div>
@@ -1149,53 +1170,53 @@
 
         <!-- Calculator Container -->
         <div class="calculator-container max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h3 class="text-4xl font-black mb-4 text-white">One-Time Order Calculator</h3>
-                <p class="text-xl text-white/60" id="calculatorSubtext">How many leads do you need?</p>
+            <div class="text-center mb-8 sm:mb-10 md:mb-12">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4 text-white">One-Time Order Calculator</h3>
+                <p class="text-base sm:text-lg md:text-xl text-white/60" id="calculatorSubtext">How many leads do you need?</p>
             </div>
 
             <!-- Purchase Type Selector -->
-            <div class="month-selector mb-12 flex flex-wrap justify-center gap-3">
-                <button id="oneTimeBtn" 
-                        class="month-btn px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white text-black hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]" 
+            <div class="month-selector mb-8 sm:mb-10 md:mb-12 flex flex-wrap justify-center gap-2 sm:gap-3">
+                <button id="oneTimeBtn"
+                        class="month-btn px-4 sm:px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white text-black hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] text-sm sm:text-base min-h-[44px]"
                         onclick="selectPurchaseType('onetime')">
                     One-Time Purchase
                 </button>
-                <button id="month1Btn" 
-                        class="month-btn px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/40" 
+                <button id="month1Btn"
+                        class="month-btn px-4 sm:px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/40 text-sm sm:text-base min-h-[44px]"
                         onclick="selectPurchaseType('month1')">
                     Month 1
                 </button>
-                <button id="month2Btn" 
-                        class="month-btn px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/40" 
+                <button id="month2Btn"
+                        class="month-btn px-4 sm:px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/40 text-sm sm:text-base min-h-[44px]"
                         onclick="selectPurchaseType('month2')">
                     Month 2
                 </button>
-                <button id="month3Btn" 
-                        class="month-btn px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/40" 
+                <button id="month3Btn"
+                        class="month-btn px-4 sm:px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-white/40 text-sm sm:text-base min-h-[44px]"
                         onclick="selectPurchaseType('month3')">
                     Month 3+
                 </button>
             </div>
 
             <!-- Slider -->
-            <div class="slider-container mb-12">
+            <div class="slider-container mb-8 sm:mb-10 md:mb-12">
                 <input type="range"
                        min="500"
                        max="10000"
-                       value="500" 
-                       step="100" 
+                       value="500"
+                       step="50"
                        class="slider w-full h-2 bg-white/10 rounded-full appearance-none cursor-pointer
-                              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 
+                              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6
                               [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer
                               [&::-webkit-slider-thumb]:shadow-[0_0_20px_rgba(255,255,255,0.5)] [&::-webkit-slider-thumb]:hover:scale-110
                               [&::-webkit-slider-thumb]:transition-transform
-                              [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full 
+                              [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full
                               [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer
                               [&::-moz-range-thumb]:shadow-[0_0_20px_rgba(255,255,255,0.5)] [&::-moz-range-thumb]:hover:scale-110"
-                       id="leadSlider" 
+                       id="leadSlider"
                        oninput="updatePricing()">
-                <div class="flex justify-between text-sm text-white/40 mt-4 font-medium" id="sliderLabels">
+                <div class="flex justify-between text-xs sm:text-sm text-white/40 mt-3 sm:mt-4 font-medium" id="sliderLabels">
                     <span>500</span>
                     <span>5,000</span>
                     <span>10,000+</span>
@@ -1203,97 +1224,97 @@
             </div>
 
             <!-- Lead Count Display -->
-            <div class="text-center mb-12">
-                <div class="text-7xl md:text-8xl font-black text-white mb-3 tracking-tight">
+            <div class="text-center mb-8 sm:mb-10 md:mb-12">
+                <div class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-3 tracking-tight">
                     <span id="leadCount">500</span>
                 </div>
-                <div class="text-white/60 text-2xl font-semibold" id="leadTypeLabel">Smart Leads</div>
+                <div class="text-white/60 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold" id="leadTypeLabel">Smart Leads</div>
             </div>
 
             <!-- Price Breakdown Card -->
-            <div class="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-10 mb-10 shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
-                <div class="flex justify-between items-center mb-6 pb-6 border-b border-white/10">
-                    <div class="text-white/60 text-lg font-medium">Subtotal:</div>
-                    <div class="text-3xl font-black text-white">€<span id="subtotalPrice">1,500</span></div>
+            <div class="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 mb-8 sm:mb-10 shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
+                <div class="flex justify-between items-center mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-white/10">
+                    <div class="text-white/60 text-sm sm:text-base md:text-lg font-medium">Subtotal:</div>
+                    <div class="text-xl sm:text-2xl md:text-3xl font-black text-white">€<span id="subtotalPrice">1,500</span></div>
                 </div>
 
-                <div id="discountRow" class="flex justify-between items-center mb-6 pb-6 border-b border-white/10" style="display: none;">
-                    <div class="text-green-400 font-bold text-lg"><span id="discountLabel">8% Discount:</span></div>
-                    <div class="text-green-400 font-black text-2xl">-€<span id="discountAmount">0</span></div>
+                <div id="discountRow" class="flex justify-between items-center mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-white/10" style="display: none;">
+                    <div class="text-green-400 font-bold text-sm sm:text-base md:text-lg"><span id="discountLabel">8% Discount:</span></div>
+                    <div class="text-green-400 font-black text-lg sm:text-xl md:text-2xl">-€<span id="discountAmount">0</span></div>
                 </div>
 
                 <div class="flex justify-between items-center">
-                    <div class="text-white/70 text-xl font-bold">TOTAL PRICE:</div>
-                    <div class="text-6xl font-black text-white tracking-tight">
+                    <div class="text-white/70 text-base sm:text-lg md:text-xl font-bold">TOTAL PRICE:</div>
+                    <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">
                         €<span id="totalPrice">1,500</span>
                     </div>
                 </div>
-                <div class="text-right mt-3">
-                    <div class="text-white/50 text-sm">
+                <div class="text-right mt-2 sm:mt-3">
+                    <div class="text-white/50 text-xs sm:text-sm">
                         Price per lead:
-                        <span class="text-white font-bold text-lg ml-1">€<span id="pricePerLead">3.00</span></span>
+                        <span class="text-white font-bold text-base sm:text-lg ml-1">€<span id="pricePerLead">3.00</span></span>
                     </div>
                 </div>
             </div>
 
             <!-- Features Grid -->
-            <div id="smartFeatures" class="grid md:grid-cols-3 gap-6 text-left mb-10">
-                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                    <span class="text-white text-xl">✓</span>
-                    <span class="text-white/70 font-medium">Verified contacts + AI pain points</span>
+            <div id="smartFeatures" class="grid md:grid-cols-3 gap-4 sm:gap-6 text-left mb-8 sm:mb-10">
+                <div class="flex items-start gap-2 sm:gap-3 bg-white/[0.02] p-3 sm:p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-lg sm:text-xl">✓</span>
+                    <span class="text-white/70 font-medium text-sm sm:text-base">Verified contacts + AI pain points</span>
                 </div>
-                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                    <span class="text-white text-xl">✓</span>
-                    <span class="text-white/70 font-medium">Lead quality scoring</span>
+                <div class="flex items-start gap-2 sm:gap-3 bg-white/[0.02] p-3 sm:p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-lg sm:text-xl">✓</span>
+                    <span class="text-white/70 font-medium text-sm sm:text-base">Lead quality scoring</span>
                 </div>
-                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                    <span class="text-white text-xl">✓</span>
-                    <span class="text-white/70 font-medium">Delivered in 3-5 business days</span>
-                </div>
-            </div>
-
-            <div id="volumeFeatures" class="grid md:grid-cols-3 gap-6 text-left mb-10" style="display: none;">
-                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                    <span class="text-white text-xl">✓</span>
-                    <span class="text-white/70 font-medium">Verified email addresses</span>
-                </div>
-                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                    <span class="text-white text-xl">✓</span>
-                    <span class="text-white/70 font-medium">Names + basic company info</span>
-                </div>
-                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                    <span class="text-white text-xl">✓</span>
-                    <span class="text-white/70 font-medium">Delivered in 5-7 business days</span>
+                <div class="flex items-start gap-2 sm:gap-3 bg-white/[0.02] p-3 sm:p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-lg sm:text-xl">✓</span>
+                    <span class="text-white/70 font-medium text-sm sm:text-base">Delivered in 3-5 business days</span>
                 </div>
             </div>
 
-            <div id="instagramFeatures" class="grid md:grid-cols-3 gap-6 text-left mb-10" style="display: none;">
-                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                    <span class="text-white text-xl">✓</span>
-                    <span class="text-white/70 font-medium">Targeted by engagement behavior</span>
+            <div id="volumeFeatures" class="grid md:grid-cols-3 gap-4 sm:gap-6 text-left mb-8 sm:mb-10" style="display: none;">
+                <div class="flex items-start gap-2 sm:gap-3 bg-white/[0.02] p-3 sm:p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-lg sm:text-xl">✓</span>
+                    <span class="text-white/70 font-medium text-sm sm:text-base">Verified email addresses</span>
                 </div>
-                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                    <span class="text-white text-xl">✓</span>
-                    <span class="text-white/70 font-medium">Quality filtered (active, real profiles)</span>
+                <div class="flex items-start gap-2 sm:gap-3 bg-white/[0.02] p-3 sm:p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-lg sm:text-xl">✓</span>
+                    <span class="text-white/70 font-medium text-sm sm:text-base">Names + basic company info</span>
                 </div>
-                <div class="flex items-start gap-3 bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                    <span class="text-white text-xl">✓</span>
-                    <span class="text-white/70 font-medium">Delivered in 5-7 business days</span>
+                <div class="flex items-start gap-2 sm:gap-3 bg-white/[0.02] p-3 sm:p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-lg sm:text-xl">✓</span>
+                    <span class="text-white/70 font-medium text-sm sm:text-base">Delivered in 5-7 business days</span>
+                </div>
+            </div>
+
+            <div id="instagramFeatures" class="grid md:grid-cols-3 gap-4 sm:gap-6 text-left mb-8 sm:mb-10" style="display: none;">
+                <div class="flex items-start gap-2 sm:gap-3 bg-white/[0.02] p-3 sm:p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-lg sm:text-xl">✓</span>
+                    <span class="text-white/70 font-medium text-sm sm:text-base">Targeted by engagement behavior</span>
+                </div>
+                <div class="flex items-start gap-2 sm:gap-3 bg-white/[0.02] p-3 sm:p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-lg sm:text-xl">✓</span>
+                    <span class="text-white/70 font-medium text-sm sm:text-base">Quality filtered (active, real profiles)</span>
+                </div>
+                <div class="flex items-start gap-2 sm:gap-3 bg-white/[0.02] p-3 sm:p-4 rounded-xl border border-white/5">
+                    <span class="text-white text-lg sm:text-xl">✓</span>
+                    <span class="text-white/70 font-medium text-sm sm:text-base">Delivered in 5-7 business days</span>
                 </div>
             </div>
 
             <!-- Warning Messages -->
-            <div id="subscriptionNote" 
-                 class="bg-purple-500/10 border-2 border-purple-500/30 rounded-2xl p-6 mb-8 text-purple-300 font-semibold text-center" 
+            <div id="subscriptionNote"
+                 class="bg-purple-500/10 border-2 border-purple-500/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 text-purple-300 font-semibold text-center text-sm sm:text-base"
                  style="display: none;">
                 <span id="subscriptionNoteText"></span>
             </div>
 
             <!-- CTA Button -->
-            <a href="#contact" 
-               class="block w-full bg-white text-black px-10 py-5 rounded-2xl font-black text-xl text-center
+            <a href="#contact"
+               class="block w-full bg-white text-black px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-2xl font-black text-lg sm:text-xl text-center
                       hover:bg-white/90 hover:scale-[1.02] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)]
-                      transition-all duration-300 tracking-tight">
+                      transition-all duration-300 tracking-tight min-h-[56px]">
                 Get Started
             </a>
         </div>
@@ -1319,36 +1340,20 @@
 </style>
 
         <!-- Contact -->
-        <section id="contact" class="section-with-stars py-20 px-6 border-t border-gray-800">
+        <section id="contact" class="section-with-stars py-12 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-gray-800">
             <div class="max-w-3xl mx-auto text-center relative z-10">
-                <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-6 text-white">Get Your Custom Quote</h2>
-                <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight mb-4 sm:mb-6 text-white">Get Your Custom Quote</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-400 mb-6 sm:mb-8 leading-relaxed">
                     Tell us your ideal customer profile. We'll respond with feasibility, timeline, and exact pricing within 24 hours.
                 </p>
-                <p class="text-lg text-gray-500 mb-10 italic">
+                <p class="text-sm sm:text-base md:text-lg text-gray-500 mb-8 sm:mb-10 italic">
                     Free consultation. No pressure. Just results.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-                    <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="bg-white text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-200 transition">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="bg-white text-black px-6 sm:px-8 py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-gray-200 transition min-h-[56px]">
                         Book a Meeting
                     </button>
-
-                    <a href="mailto:niko.newvillage@proton.me" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-black transition flex flex-col items-center gap-1">
-                        <span class="text-sm font-normal">Email Us:</span>
-                        <span>niko.newvillage@proton.me</span>
-                    </a>
-                </div>
-
-                <div class="mt-12 pt-12 border-t border-gray-800">
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        <strong class="text-white text-2xl">New Village</strong><br>
-                        <span class="text-lg">Custom Verified Lead Databases</span>
-                    </p>
-                    <p class="text-gray-500 text-sm uppercase tracking-wider mb-2">Direct Email:</p>
-                    <a href="mailto:niko.newvillage@proton.me" class="inline-block text-white hover:text-gray-300 transition text-2xl font-bold">
-                        niko.newvillage@proton.me
-                    </a>
                 </div>
             </div>
         </section>
@@ -1357,19 +1362,19 @@
 
 
 <!-- MODERN FOOTER - PURE BLACK -->
-<footer class="py-16 px-6 border-t border-gray-800" style="background-color: #000;">
+<footer class="py-12 sm:py-16 px-4 sm:px-6 border-t border-gray-800" style="background-color: #000;">
     <div class="max-w-6xl mx-auto">
-        
+
         <!-- Top Section -->
-        <div class="grid md:grid-cols-3 gap-12 mb-12">
-            
+        <div class="grid md:grid-cols-3 gap-8 sm:gap-12 mb-8 sm:mb-12">
+
             <!-- Logo & Tagline -->
             <div class="md:col-span-1">
-                <div class="flex items-center gap-3 mb-4">
-                    <img src="assets/new village logo desin.png" alt="New Village Logo" class="h-12 w-12 object-contain">
-                    <div class="text-3xl font-black tracking-tight text-white">New Village</div>
+                <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                    <img src="assets/new village logo desin.png" alt="New Village Logo" class="h-10 w-10 sm:h-12 sm:w-12 object-contain">
+                    <div class="text-2xl sm:text-3xl font-black tracking-tight text-white">New Village</div>
                 </div>
-                <p class="text-gray-400 text-lg mb-4">Research. Strategy. Execution.</p>
+                <p class="text-gray-400 text-base sm:text-lg mb-3 sm:mb-4">Research. Strategy. Execution.</p>
                 <p class="text-gray-500 text-sm leading-relaxed">
                     Custom lead databases built to your exact Ideal Customer Profile. Verified contacts, AI-enriched data, and guaranteed deliverability.
                 </p>
@@ -1377,30 +1382,30 @@
 
             <!-- Quick Links -->
             <div>
-                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h4>
+                <h4 class="text-white font-bold mb-3 sm:mb-4 uppercase tracking-wider text-xs sm:text-sm">Quick Links</h4>
                 <ul class="space-y-2">
-                    <li><a href="#what-you-get" class="text-gray-400 hover:text-white transition">About Us</a></li>
-                    <li><a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a></li>
-                    <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
-                    <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Resources</a></li>
-                    <li><a href="policies.html" class="text-gray-400 hover:text-white transition">Policies</a></li>
+                    <li><a href="#what-you-get" class="text-gray-400 hover:text-white transition text-sm sm:text-base min-h-[44px] inline-flex items-center">About Us</a></li>
+                    <li><a href="#pricing" class="text-gray-400 hover:text-white transition text-sm sm:text-base min-h-[44px] inline-flex items-center">Pricing</a></li>
+                    <li><a href="faq.html" class="text-gray-400 hover:text-white transition text-sm sm:text-base min-h-[44px] inline-flex items-center">FAQ</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-white transition text-sm sm:text-base min-h-[44px] inline-flex items-center">Resources</a></li>
+                    <li><a href="policies.html" class="text-gray-400 hover:text-white transition text-sm sm:text-base min-h-[44px] inline-flex items-center">Policies</a></li>
                 </ul>
             </div>
 
             <!-- Contact -->
             <div>
-                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Get in Touch</h4>
+                <h4 class="text-white font-bold mb-3 sm:mb-4 uppercase tracking-wider text-xs sm:text-sm">Get in Touch</h4>
                 <ul class="space-y-3">
                     <li>
-                        <a href="mailto:niko.newvillage@proton.me" class="text-gray-400 hover:text-white transition block">
+                        <a href="mailto:niko.newvillage@proton.me" class="text-gray-400 hover:text-white transition block min-h-[44px]">
                             <div class="text-xs text-gray-500 mb-1">Email</div>
-                            <div class="font-semibold">niko.newvillage@proton.me</div>
+                            <div class="font-semibold text-sm sm:text-base">niko.newvillage@proton.me</div>
                         </a>
                     </li>
                     <li>
-                        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="text-left w-full">
+                        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko_newvillage'});return false;" class="text-left w-full min-h-[44px]">
                             <div class="text-xs text-gray-500 mb-1">Schedule</div>
-                            <div class="font-semibold text-gray-400 hover:text-white transition">Book a Meeting →</div>
+                            <div class="font-semibold text-gray-400 hover:text-white transition text-sm sm:text-base">Book a Meeting →</div>
                         </button>
                     </li>
                 </ul>
@@ -1409,8 +1414,8 @@
         </div>
 
         <!-- Bottom Section -->
-        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-gray-500 text-sm">
+        <div class="border-t border-gray-800 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-500 text-xs sm:text-sm">
                 &copy; 2025 New Village. All rights reserved.
             </p>
         </div>
@@ -1425,7 +1430,19 @@
     <script>
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
+            const button = document.querySelector('.dice-menu');
             menu.classList.toggle('active');
+
+            // Update ARIA
+            const isExpanded = menu.classList.contains('active');
+            button.setAttribute('aria-expanded', isExpanded);
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const button = document.querySelector('.dice-menu');
+            menu.classList.remove('active');
+            button.setAttribute('aria-expanded', 'false');
         }
 
         document.addEventListener('click', function(event) {
@@ -1480,9 +1497,12 @@
                 smartRadio.style.background = '#fff';
 
                 // Update slider - minimum 500 leads (€1,500 minimum order)
-                document.getElementById('leadSlider').min = 500;
-                document.getElementById('leadSlider').value = 500; // Always start at minimum
-                document.getElementById('sliderLabels').innerHTML = '<span>500</span><span>5,000</span><span>10,000+</span>';
+                const slider = document.getElementById('leadSlider');
+                slider.min = 500;
+                slider.max = 10000;
+                slider.value = 500; // Always start at minimum
+                slider.setAttribute('value', 500); // Force update
+                document.getElementById('sliderLabels').innerHTML = '<span>500</span><span>5,000</span><span>10,000</span>';
                 document.getElementById('leadTypeLabel').textContent = 'Smart Leads';
 
                 // Show/hide features
@@ -1497,9 +1517,12 @@
                 volumeRadio.style.background = '#fff';
 
                 // Update slider - minimum 3,750 leads (€1,500 minimum order)
-                document.getElementById('leadSlider').min = 3750;
-                document.getElementById('leadSlider').value = 3750; // Always start at minimum
-                document.getElementById('sliderLabels').innerHTML = '<span>3,750</span><span>10,000</span><span>20,000+</span>';
+                const slider = document.getElementById('leadSlider');
+                slider.min = 3750;
+                slider.max = 10000;
+                slider.value = 3750; // Always start at minimum
+                slider.setAttribute('value', 3750); // Force update
+                document.getElementById('sliderLabels').innerHTML = '<span>3,750</span><span>6,875</span><span>10,000</span>';
                 document.getElementById('leadTypeLabel').textContent = 'Volume Leads';
 
                 // Show/hide features
@@ -1513,9 +1536,12 @@
                 instagramRadio.style.background = '#fff';
 
                 // Update slider - minimum 1,000 profiles (€1,500 minimum order)
-                document.getElementById('leadSlider').min = 1000;
-                document.getElementById('leadSlider').value = 1000; // Always start at minimum
-                document.getElementById('sliderLabels').innerHTML = '<span>1,000</span><span>5,000</span><span>10,000+</span>';
+                const slider = document.getElementById('leadSlider');
+                slider.min = 1000;
+                slider.max = 10000;
+                slider.value = 1000; // Always start at minimum
+                slider.setAttribute('value', 1000); // Force update
+                document.getElementById('sliderLabels').innerHTML = '<span>1,000</span><span>5,000</span><span>10,000</span>';
                 document.getElementById('leadTypeLabel').textContent = 'Instagram Profiles';
 
                 // Show/hide features
@@ -1576,22 +1602,40 @@
                 // Volume discount: 8% for 10k+
                 if (leadCount >= 10000) {
                     discountPercent = 8;
-                    discountLabel = '8% Volume Discount';
+                    discountLabel = '8% Volume Discount (10k+ leads)';
                     showDiscount = true;
                 }
             } else if (currentPurchaseType === 'month1') {
-                discountPercent = 10;
-                discountLabel = 'Month 1: 10% Discount';
+                // Month 1: Base 10% + potential volume bonus
+                if (leadCount >= 10000) {
+                    discountPercent = 18; // 10% subscription + 8% volume
+                    discountLabel = 'Month 1 (10%) + Volume (8%)';
+                } else {
+                    discountPercent = 10;
+                    discountLabel = 'Month 1: 10% Discount';
+                }
                 showDiscount = true;
                 subscriptionNote = 'Monthly subscription - cancel anytime';
             } else if (currentPurchaseType === 'month2') {
-                discountPercent = 12;
-                discountLabel = 'Month 2: 12% Discount';
+                // Month 2: Base 12% + potential volume bonus
+                if (leadCount >= 10000) {
+                    discountPercent = 20; // 12% subscription + 8% volume
+                    discountLabel = 'Month 2 (12%) + Volume (8%)';
+                } else {
+                    discountPercent = 12;
+                    discountLabel = 'Month 2: 12% Discount';
+                }
                 showDiscount = true;
                 subscriptionNote = 'Monthly subscription - cancel anytime';
             } else if (currentPurchaseType === 'month3') {
-                discountPercent = 15;
-                discountLabel = 'Month 3+: 15% Discount (Max)';
+                // Month 3+: Base 15% + potential volume bonus
+                if (leadCount >= 10000) {
+                    discountPercent = 23; // 15% subscription + 8% volume
+                    discountLabel = 'Month 3+ (15%) + Volume (8%)';
+                } else {
+                    discountPercent = 15;
+                    discountLabel = 'Month 3+: 15% Discount (Max)';
+                }
                 showDiscount = true;
                 subscriptionNote = 'Monthly subscription - cancel anytime';
             }
@@ -1625,12 +1669,85 @@
                 subscriptionNoteEl.style.display = 'none';
             }
 
+            // Show 10k limit popup if user hits maximum
+            if (leadCount >= 10000) {
+                showCustomQuotePopup();
+            }
+        }
+
+        // 10k Limit Popup Functions
+        function showCustomQuotePopup() {
+            document.getElementById('customQuotePopup').classList.remove('hidden');
+            document.getElementById('customQuotePopup').classList.add('flex');
+        }
+
+        function closeCustomQuotePopup() {
+            document.getElementById('customQuotePopup').classList.add('hidden');
+            document.getElementById('customQuotePopup').classList.remove('flex');
+        }
+
+        function copyEmailToClipboard() {
+            const email = 'niko.newvillage@proton.me';
+            navigator.clipboard.writeText(email).then(() => {
+                // Show success feedback
+                const btn = document.getElementById('copyEmailBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span>✓ Copied!</span>';
+                btn.classList.add('bg-green-500');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('bg-green-500');
+                }, 2000);
+            });
         }
 
         // Initialize pricing
         updatePricing();
     </script>
 
-   
+    <!-- 10k Limit Custom Quote Popup -->
+    <div id="customQuotePopup" class="hidden fixed inset-0 bg-black/90 backdrop-blur-sm z-50 items-center justify-center p-4">
+        <div class="bg-white/[0.05] backdrop-blur-xl border-2 border-white/20 rounded-3xl p-6 sm:p-8 md:p-12 max-w-2xl w-full relative">
+            <!-- Close Button -->
+            <button onclick="closeCustomQuotePopup()" aria-label="Close popup" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-white/60 hover:text-white transition min-h-[44px] min-w-[44px] flex items-center justify-center">
+                <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <!-- Content -->
+            <div class="text-center">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-3 sm:mb-4">Orders Over 10,000 Leads</h3>
+                <p class="text-base sm:text-lg md:text-xl text-white/70 mb-6 sm:mb-8">
+                    For bulk orders over 10,000 leads, we provide custom quotes with special pricing.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <!-- Copy Email Button -->
+                    <button id="copyEmailBtn" onclick="copyEmailToClipboard()" class="bg-white text-black px-6 sm:px-8 py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-gray-200 transition-all flex items-center justify-center gap-2 min-h-[56px]">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        <span>Copy Email</span>
+                    </button>
+
+                    <!-- Calendly Button -->
+                    <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/niko-newvillage-proton'});return false;" class="border-2 border-white text-white px-6 sm:px-8 py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-white hover:text-black transition-all min-h-[56px]">
+                        Schedule a Call
+                    </button>
+                </div>
+
+                <!-- Email Display -->
+                <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-white/[0.03] rounded-xl border border-white/10">
+                    <p class="text-white/50 text-xs sm:text-sm mb-1">Or email us directly at:</p>
+                    <a href="mailto:niko.newvillage@proton.me" class="text-white font-bold text-lg sm:text-xl hover:text-white/80 transition break-all">
+                        niko.newvillage@proton.me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
